@@ -14,7 +14,7 @@ export default async function Read(props){
             {
                 review.data.map((review)=>{
                     return(
-                    <li>
+                    <li key={review.id}>
                         <p>content : {review.attributes.content}</p>
                         <p>rating : {review.attributes.rating}</p>
                     </li>
