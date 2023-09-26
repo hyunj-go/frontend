@@ -1,4 +1,9 @@
-import Review from "@/app/component/review.js";
+import dynamic from "next/dynamic";
+
+// import Review from "@/app/component/review.js";
+const Review = dynamic(() => import("@/app/component/review.js"), {
+  ssr: false
+});
 
 const fetchBakeries = async (params) => {
     const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bakeries/${params.id}?populate=*`);
