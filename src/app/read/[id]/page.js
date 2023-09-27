@@ -2,7 +2,7 @@ import Review from "@/app/component/review.js";
 
 const fetchBakeries = async (params) => {
     try {
-        const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params.id}?populate=*`, {
+        const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params}?populate=*`, {
             cache: "no-store",
         });
         const bakery = await resp.json();
@@ -15,7 +15,7 @@ const fetchBakeries = async (params) => {
 
 const fetchReviews = async (params) => {
     try {
-        const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params.id}`, {
+        const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params}`, {
             cache: "no-store",
         });
         const review = await resp.json();
@@ -26,25 +26,15 @@ const fetchReviews = async (params) => {
     }
 }
 
-async function generateStaticParams() {
-    const bakery = await fetchBakeries(params);
-    const review = await fetchReviews(params);
-
-    return bakery.data.map((item) => ({
-      id: item.id,
-    }));
-  }
-  
-
-const Read = async({ params }) => {
-    
+const Read = async(props) => {
+    const bakery = await fetchBakeries(props.params.id);
+    const review = await fetchReviews(props.params.id);
 
     return(
         <>
-        <div>{JSON.stringify(params)}</div>;
-        {/* <h2>{bakery.data.attributes.name}</h2>
-        <p>{bakery.data.attributes.description}</p>
-        <Review param={bakery.data.id} review={review}/> */}
+            <h2>{bakery.data.attributes.name}</h2>
+            <p>{bakery.data.attributes.description}</p>
+            <Review param={bakery.data.id} review={review}/>
         </>
     )
 }
