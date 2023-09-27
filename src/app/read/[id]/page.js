@@ -2,9 +2,10 @@ import Review from "@/app/component/review.js";
 
 const fetchBakeries = async (params) => {
     try {
-        const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params.id}?populate=*`);
+        const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params.id}?populate=*`, {
+            cache: "no-store",
+        });
         const bakery = await resp.json();
-
         return bakery
     }catch(error){
         console.log(error.stack);
@@ -14,9 +15,10 @@ const fetchBakeries = async (params) => {
 
 const fetchReviews = async (params) => {
     try {
-        const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params.id}`);
+        const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params.id}`, {
+            cache: "no-store",
+        });
         const review = await resp.json();
-
         return review
     }catch(error){
         console.log(error.stack);
