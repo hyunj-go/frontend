@@ -26,15 +26,25 @@ const fetchReviews = async (params) => {
     }
 }
 
-const Read = async({ params }) => {
+async function generateStaticParams() {
     const bakery = await fetchBakeries(params);
     const review = await fetchReviews(params);
 
+    return bakery.data.map((item) => ({
+      id: item.id,
+    }));
+  }
+  
+
+const Read = async({ params }) => {
+    
+
     return(
         <>
-        <h2>{bakery.data.attributes.name}</h2>
+        <div>{JSON.stringify(params)}</div>;
+        {/* <h2>{bakery.data.attributes.name}</h2>
         <p>{bakery.data.attributes.description}</p>
-        <Review param={bakery.data.id} review={review}/>
+        <Review param={bakery.data.id} review={review}/> */}
         </>
     )
 }
