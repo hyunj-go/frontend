@@ -1,18 +1,27 @@
 import Review from "@/app/component/review.js";
 
 const fetchBakeries = async (params) => {
-    const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params.id}?populate=*`);
-    const bakery = await resp.json();
+    try {
+        const resp = await fetch(`${process.env.API_URL}/api/bakeries/${params.id}?populate=*`);
+        const bakery = await resp.json();
 
-    return bakery
+        return bakery
+    }catch(error){
+        console.log(error.stack);
+        return {}
+    }
 }
 
 const fetchReviews = async (params) => {
-    const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params.id}`);
-    const review = await resp.json();
+    try {
+        const resp = await fetch(`${process.env.API_URL}/api/reviews?filters[bakery][id][$eq]=${params.id}`);
+        const review = await resp.json();
 
-    return review
-    
+        return review
+    }catch(error){
+        console.log(error.stack);
+        return {}
+    }
 }
 
 const Read = async({ params }) => {
