@@ -63,7 +63,6 @@ export default function Review(props){
                 setReviewEdit(false);
                 // window.location.replace(`/read/${props.param}`)
                 // router.push(`/read/${lastId}`);
-                // router.refresh();
             })
         }}>
             <p>
