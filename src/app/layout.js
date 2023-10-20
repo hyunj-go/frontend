@@ -21,11 +21,10 @@ export default function RootLayout({ children }) {
               <div className="container">
                 <div className="u-pull-left ticker-text">
                   <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
-                      705-470-PNCH</a></p>
+                      735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
-                        className="fa fa-map-marker" aria-hidden="true"></i> 2037
-                      Long Lake Road, Unit 8b, Sudbury ON,
-                      P3E 6J9</a></p>
+                        className="fa fa-map-marker" aria-hidden="true"></i> 
+                      Long Lake Road 128</a></p>
                   <p className="mobile-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
                         className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a></p>
                 </div>
