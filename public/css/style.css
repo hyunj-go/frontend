@@ -6888,21 +6888,4 @@ hr {
 
 
 
-/* FONT PATH
-* -------------------------- */
-
-@font-face {
-    font-family: 'FontAwesome';
-    src: url('../font/fontawesome-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-
-
-
-
-
-
 .inner {padding-top:200px;}

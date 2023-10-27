@@ -29,8 +29,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-
         
         <h2>
           <Link href="/read">more Bakery</Link>
