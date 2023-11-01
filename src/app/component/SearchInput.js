@@ -18,7 +18,7 @@ const SearchInput = () => {
                 // const url = `/search?name=${search}`
                 // router.replace(url)
             }else{
-                router.replace(currentPathName)
+                // router.replace(currentPathName)
             }
         }
         catch (e) {
