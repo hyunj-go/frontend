@@ -16,7 +16,7 @@ const SearchInput = () => {
         try {
             if(search) {
                 const url = `/search?name=${search}`
-                router.replace(url)
+                // router.replace(url)
             }else{
                 router.replace(currentPathName)
             }
@@ -27,14 +27,14 @@ const SearchInput = () => {
     }, [search])
 
     //search 값이 바뀔때 재호출 (useCallback 쓰면 불러올때마다 함수 생성하지 않고 기존 함수 사용)
-    const handleSearchValue = ((e) => { 
+    const handleSearchValue = useCallback((e) => { 
         setSearch(e.target.value)
 
         //이전페이지 저장
         if(pathName !== '/search'){
             setCurrentPathName(pathName);
         }
-    })
+    }, [search])
 
     //검색어 지우기
     const cleanSearch = () => {
