@@ -17,6 +17,7 @@ const SearchInput = () => {
             if(search) {
                 const url = `/search?name=${search}`
                 router.replace(url)
+                setSearch(search);
             }else{
                 // router.replace(currentPathName)
             }
