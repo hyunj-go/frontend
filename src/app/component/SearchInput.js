@@ -30,7 +30,7 @@ const SearchInput = ({ name }) => {
 
         
         // router.push(`${pathname}${query}`);
-        router.replace(`/search${query}`, {scroll:false});
+        router.replace(`/search${query}`, {shallow: true});
 
     }
     //검색어 지우기
