@@ -16,7 +16,6 @@ const SearchInput = ({ name }) => {
         // now you got a read/write object
         const current = new URLSearchParams(Array.from(searchParams.entries())); 
         // update as necessary
-        // setSearch(e.target.value)
         const value = e.target.value.trim();
 
         if (!value) {
@@ -31,7 +30,7 @@ const SearchInput = ({ name }) => {
 
         
         // router.push(`${pathname}${query}`);
-        router.push(`/search${query}`);
+        router.replace(`/search${query}`, {scroll:false});
 
     }
     //검색어 지우기
