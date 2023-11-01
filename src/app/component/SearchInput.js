@@ -1,45 +1,42 @@
 "use client"
 import { BsSearch } from "react-icons/bs";
 import { TiDelete } from "react-icons/ti";
-import {useCallback, useEffect, useState } from "react"
+// import {useCallback, useEffect, useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 //input에 검색어를 적을때마다 page이동하면서 검색어와 page값이 query로 전해진다
-const SearchInput = () => {
-    const router = useRouter()
-    const pathName = usePathname()
-    const [search, setSearch] = useState('')
-    let [currentPathName, setCurrentPathName] = useState('/');
-    
-    //검색값이 변할때마다 새롭게 요청
-    useEffect(() => {
-        try {
-            if(search) {
-                const url = `/search?name=${search}`
-                router.replace(url)
-                setSearch(search);
-            }else{
-                // router.replace(currentPathName)
-            }
-        }
-        catch (e) {
-            console.error(e.response)
-        }
-    }, [search])
+const SearchInput = ({ name }) => {
+    const router = useRouter();
+    const pathName = usePathname();
+    const searchParams = useSearchParams();
+    // const [search, setSearch] = useState('')
+    // let [currentPathName, setCurrentPathName] = useState('/');
 
-    //search 값이 바뀔때 재호출 (useCallback 쓰면 불러올때마다 함수 생성하지 않고 기존 함수 사용)
-    const handleSearchValue = useCallback((e) => { 
-        setSearch(e.target.value)
+    const handleSearchValue = (e) => { 
+        // now you got a read/write object
+        const current = new URLSearchParams(Array.from(searchParams.entries())); 
+        // update as necessary
+        // setSearch(e.target.value)
+        const value = e.target.value.trim();
 
-        //이전페이지 저장
-        if(pathName !== '/search'){
-            // setCurrentPathName(pathName);
+        if (!value) {
+            current.delete("name");
+        } else {
+            current.set("name", e.target.value);
         }
-    }, [search])
 
+        // cast to string
+        const search = current.toString();
+        const query = search ? `?${search}` : "";
+
+        
+        // router.push(`${pathname}${query}`);
+        router.push(`/search${query}`);
+
+    }
     //검색어 지우기
     const cleanSearch = () => {
-        setSearch('')
+        // setSearch('')
     }
 
     
@@ -47,12 +44,12 @@ const SearchInput = () => {
     return (
         <>
             <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={search} onChange={handleSearchValue} />
-                {search && <TiDelete onClick={cleanSearch} size={20}/>}
+                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={name} onChange={handleSearchValue} />
+                {name && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
         </>
     )
 }
 
-export default SearchInput
+export default SearchInput;
