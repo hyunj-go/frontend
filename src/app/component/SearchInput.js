@@ -16,7 +16,7 @@ const SearchInput = () => {
         try {
             if(search) {
                 const url = `/search?name=${search}`
-                // router.replace(url)
+                router.replace(url)
             }else{
                 router.replace(currentPathName)
             }
@@ -45,11 +45,11 @@ const SearchInput = () => {
 
     return (
         <>
-            <div>
+            {/* <div>
                 <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={search} onChange={handleSearchValue} />
                 {search && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
-            </div>
+            </div> */}
         </>
     )
 }
