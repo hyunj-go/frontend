@@ -12,19 +12,19 @@ const SearchInput = () => {
     let [currentPathName, setCurrentPathName] = useState('/');
     
     //검색값이 변할때마다 새롭게 요청
-    useEffect(() => {
-        try {
-            if(search) {
-                const url = `/search?name=${search}`
-                router.replace(url)
-            }else{
-                router.replace(currentPathName)
-            }
-        }
-        catch (e) {
-            console.error(e.response)
-        }
-    }, [search])
+    // useEffect(() => {
+    //     try {
+    //         if(search) {
+    //             const url = `/search?name=${search}`
+    //             router.replace(url)
+    //         }else{
+    //             router.replace(currentPathName)
+    //         }
+    //     }
+    //     catch (e) {
+    //         console.error(e.response)
+    //     }
+    // }, [search])
 
     //search 값이 바뀔때 재호출 (useCallback 쓰면 불러올때마다 함수 생성하지 않고 기존 함수 사용)
     const handleSearchValue = useCallback((e) => { 
