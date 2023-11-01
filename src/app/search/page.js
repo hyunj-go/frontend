@@ -21,7 +21,7 @@ const Search = () => {
     return(
         <>
             <div className='inner'>
-                <p>"{name}" 검색결과 {bakery.length}개</p>
+                <p>&quot;{name}&quot; 검색결과 {bakery.length}개</p>
             <ol>
                 {   
                     bakery.length ?
