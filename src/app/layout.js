@@ -1,4 +1,3 @@
-"use client"
 import './globals.css';
 import 'public/css/style.css';
 import SearchInput from './component/SearchInput';
