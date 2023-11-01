@@ -15,8 +15,8 @@ const SearchInput = () => {
     useEffect(() => {
         try {
             if(search) {
-                // const url = `/search?name=${search}`
-                // router.replace(url)
+                const url = `/search?name=${search}`
+                router.replace(url)
             }else{
                 // router.replace(currentPathName)
             }
@@ -32,7 +32,7 @@ const SearchInput = () => {
 
         //이전페이지 저장
         if(pathName !== '/search'){
-            setCurrentPathName(pathName);
+            // setCurrentPathName(pathName);
         }
     }, [search])
 
