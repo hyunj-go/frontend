@@ -48,7 +48,7 @@ const SearchInput = () => {
         <>
             <div>
                 <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={value} onChange={handleSearchValue} />
-                {search && <TiDelete onClick={cleanSearch} size={20}/>}
+                {value && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
         </>
