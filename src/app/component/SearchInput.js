@@ -10,27 +10,41 @@ const SearchInput = () => {
     const pathName = usePathname();
     const searchParams = useSearchParams();
 
-    const [value, setValue] = useState('');
+    const [val, setVal] = useState('');
 
     const handleSearchValue = (e) => { 
-        const current = new URLSearchParams(Array.from(searchParams.entries())); 
-        setValue(e.target.value.trim());
+        
+        setVal(e.target.value.trim());
 
-        if (!value) {
+        
+
+        
+
+    }
+
+    useEffect(()=>{
+        const current = new URLSearchParams(Array.from(searchParams.entries())); 
+
+        if (!val) {
             current.delete("name");
         } else {
-            current.set("name", e.target.value);
+            current.set("name", val);
         }
 
         // cast to string
         const search = current.toString();
         const query = search ? `?${search}` : "";
 
-        
-        // router.push(`${pathname}${query}`);
-        router.replace(`/search${query}`);
 
-    }
+        // router.push(`${pathName}${query}`);
+        if(pathName == '/search'){
+            router.replace(`${pathName}${query}`); 
+        }else {
+            router.replace(`/search${query}`);
+        }
+    }, [val])
+
+    
     //검색어 지우기
     const cleanSearch = () => {
         // setSearch('')
@@ -45,7 +59,7 @@ const SearchInput = () => {
         <>
             <div>
                 <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' onChange={handleSearchValue} />
-                {value && <TiDelete onClick={cleanSearch} size={20}/>}
+                {val && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
         </>
