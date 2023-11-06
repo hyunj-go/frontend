@@ -15,11 +15,6 @@ const SearchInput = () => {
     const handleSearchValue = (e) => { 
         
         setVal(e.target.value.trim());
-
-        
-
-        
-
     }
 
     useEffect(()=>{
@@ -59,7 +54,7 @@ const SearchInput = () => {
     return (
         <>
             <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' onChange={handleSearchValue} />
+                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={val} onChange={handleSearchValue} />
                 {val && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
