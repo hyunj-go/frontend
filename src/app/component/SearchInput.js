@@ -29,19 +29,20 @@ const SearchInput = () => {
             current.delete("name");
         } else {
             current.set("name", val);
+
+            // cast to string
+            const search = current.toString();
+            const query = `?${search}`;
+
+            // router.push(`${pathName}${query}`);
+            if(pathName == '/search'){
+                router.replace(`${pathName}${query}`); 
+            }else {
+                router.replace(`/search${query}`);
+            }
         }
 
-        // cast to string
-        const search = current.toString();
-        const query = search ? `?${search}` : "";
-
-
-        // router.push(`${pathName}${query}`);
-        if(pathName == '/search'){
-            router.replace(`${pathName}${query}`); 
-        }else {
-            router.replace(`/search${query}`);
-        }
+        
     }, [val])
 
     
