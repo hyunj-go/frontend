@@ -36,9 +36,9 @@ const SearchInput = () => {
 
             // router.push(`${pathName}${query}`);
             if(pathName == '/search'){
-                router.replace(`${pathName}${query}`); 
+                router.replace(`${pathName}${query}`,  { shallow: true } ); 
             }else {
-                router.replace(`/search${query}`);
+                router.replace(`/search${query}`,  { shallow: true } );
             }
         }
 
