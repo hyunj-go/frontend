@@ -9,14 +9,11 @@ const SearchInput = () => {
     const router = useRouter();
     const pathName = usePathname();
     const searchParams = useSearchParams();
-    // const [search, setSearch] = useState('')
-    // let [currentPathName, setCurrentPathName] = useState('/');
-    let [value, setValue] = useState('');
+
+    const [value, setValue] = useState('');
 
     const handleSearchValue = (e) => { 
-        // now you got a read/write object
         const current = new URLSearchParams(Array.from(searchParams.entries())); 
-        // update as necessary
         setValue(e.target.value.trim());
 
         if (!value) {
@@ -47,7 +44,7 @@ const SearchInput = () => {
     return (
         <>
             <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={value} onChange={handleSearchValue} />
+                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' onChange={handleSearchValue} />
                 {value && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
