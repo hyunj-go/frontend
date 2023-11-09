@@ -7,38 +7,22 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 //input에 검색어를 적을때마다 page이동하면서 검색어와 page값이 query로 전해진다
 const SearchInput = () => {
     const router = useRouter();
-    const pathName = usePathname();
-    const searchParams = useSearchParams();
+    const [searchQuery, setSearchQuery] = useState("")
+    const searchParams = useSearchParams(); 
+    let query = searchParams.get('name');
 
-    const [val, setVal] = useState('');
-
-    const handleSearchValue = (e) => { 
+    useEffect(() => {
         
-        setVal(e.target.value.trim());
-    }
-
-    useEffect(()=>{
-        const current = new URLSearchParams(Array.from(searchParams.entries())); 
-
-        if (!val) {
-            current.delete("name");
-        } else {
-            current.set("name", val);
-        }
-
-        // cast to string
-        const search = current.toString();
-        const query = `?${search}`;
-
-        // router.push(`${pathName}${query}`);
-        if(pathName == '/search'){
-            router.push(`${pathName}${query}`,  { shallow: true } ); 
-        }else {
-            router.push(`/search${query}`,  { shallow: true } );
-        }
 
         
-    }, [val])
+        // setSearchParams({ name: query })
+    }, []);
+
+    const handleSearch = (e) => {
+        // setSearchQuery(e.target.value);
+        setSearchQuery(e.target.value);
+        router.push(`/search?name=${searchQuery}`);
+    };
 
     
     //검색어 지우기
@@ -46,20 +30,15 @@ const SearchInput = () => {
         // setSearch('')
     }
 
-
-
-    
-    
-
     return (
-        <>
-            <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={val} onChange={handleSearchValue} />
-                {val && <TiDelete onClick={cleanSearch} size={20}/>}
-                <BsSearch size={20} />
-            </div>
-        </>
-    )
+        <div>
+            <input
+            type="text"
+            placeholder="Search for something..."
+            onChange={handleSearch}
+            />
+        </div>
+    );
 }
 
 export default SearchInput;
