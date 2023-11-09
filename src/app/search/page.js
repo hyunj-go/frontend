@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import SearchInput from '../component/SearchInput';
 
 const Search = () => {
     let [bakery, setBakery] = useState([]); 
@@ -21,6 +22,7 @@ const Search = () => {
     return(
         <>
             <div className='inner'>
+                <SearchInput></SearchInput>
                 <p>&quot;{name}&quot; 검색결과 {bakery.length}개</p>
             <ol>
                 {   
