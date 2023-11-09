@@ -11,13 +11,6 @@ const SearchInput = () => {
     const searchParams = useSearchParams(); 
     let query = searchParams.get('name');
 
-    useCallback(() => {
-        
-
-        
-        // setSearchParams({ name: query })
-    }, [searchQuery]);
-
 
     const handleSearch = useCallback((e) => { 
         setSearchQuery(e.target.value);
