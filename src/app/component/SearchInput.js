@@ -13,18 +13,18 @@ const SearchInput = () => {
     let query = searchParams.get('name');
     let chk = false;
 
-
     const handleSearch = useCallback((e) => { 
         setSearchQuery(e.target.value);
+        handleRouter();
+    },[searchParams])
 
+    const handleRouter = useCallback((e) => {
         if(pathName !== '/search' && !chk){ console.log('search가 아님');
             chk = true;
             router.replace(`/search?name=${searchQuery}`);
         }else {
             router.push(`?name=${searchQuery}`);     
         }
-        
-
     }, [searchQuery])
 
     
