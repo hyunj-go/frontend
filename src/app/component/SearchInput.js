@@ -11,18 +11,18 @@ const SearchInput = () => {
     const searchParams = useSearchParams(); 
     let query = searchParams.get('name');
 
-    useEffect(() => {
+    useCallback(() => {
         
 
         
         // setSearchParams({ name: query })
-    }, []);
+    }, [searchQuery]);
 
-    const handleSearch = (e) => {
-        // setSearchQuery(e.target.value);
+
+    const handleSearch = useCallback((e) => { 
         setSearchQuery(e.target.value);
         router.push(`/search?name=${searchQuery}`);
-    };
+    }, [searchQuery])
 
     
     //검색어 지우기
