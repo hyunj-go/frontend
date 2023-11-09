@@ -14,7 +14,7 @@ const SearchInput = () => {
 
     const handleSearch = useCallback((e) => { 
         setSearchQuery(e.target.value);
-        router.push(`/search?name=${searchQuery}`);
+        router.push(`?name=${searchQuery}`);
     }, [searchQuery])
 
     
