@@ -13,10 +13,9 @@ const SearchInput = () => {
     //검색값이 변할때마다 새롭게 요청
     useEffect(() => {
         try {
-            const url = `/search?name=${search}`
+            const url = `?name=${search}`
             router.replace(url)
             setSearch(search);
-            console.log(search);
         }
         catch (e) {
             console.error(e.response)
