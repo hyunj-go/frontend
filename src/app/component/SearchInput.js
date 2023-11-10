@@ -14,14 +14,17 @@ const SearchInput = () => {
     useEffect(() => {
         try {
             const url = `?name=${search}`
-            router.replace(url)
-            setSearch(search, undefined, { shallow: true });
+            router.replace(url, undefined, { shallow: true })
+            // setSearch(search);
             console.log('useEffect');
+
         }
         catch (e) {
             console.error(e.response)
         }
     }, [search])
+
+
 
     //search 값이 바뀔때 재호출 (useCallback 쓰면 랜딩할때마다 함수 생성하지 않고 기존 함수 사용)
     const handleSearchValue = useCallback((e) => { 
