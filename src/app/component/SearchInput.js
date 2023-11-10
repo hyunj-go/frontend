@@ -33,7 +33,7 @@ const SearchInput = () => {
     //search 값이 바뀔때 재호출 (useCallback 쓰면 랜딩할때마다 함수 생성하지 않고 기존 함수 사용)
     const handleSearchValue = useCallback((e) => { 
         setSearch(e.target.value)
-    }, [search])
+    }, [pathName])
 
     //검색어 지우기
     const cleanSearch = () => {
