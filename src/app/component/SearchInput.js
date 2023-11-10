@@ -14,9 +14,14 @@ const SearchInput = () => {
     useEffect(() => {
         console.log('useEffect - search:', search);
         try {
-            const url = `?name=${search}`
-            router.replace(url, undefined, { shallow: true });
-            console.log('URL replaced');
+            let param = ''
+            if(search !== ''){
+                param = `?name=${search}`
+                router.replace(param, undefined, { shallow: true });
+                console.log('URL replaced');
+            }else{
+                param = ''
+            }
         }
         catch (e) {
             console.error(e.response)
