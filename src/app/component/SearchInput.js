@@ -16,11 +16,13 @@ const SearchInput = () => {
         try {
             let param = ''
             if(search !== ''){
-                param = `?name=${search}`
+                param = `/search?name=${search}`
                 router.replace(param, undefined, { shallow: true });
                 console.log('URL replaced');
             }else{
-                param = ''
+                param = '';
+                router.replace('/search', undefined, { shallow: true });
+                console.log('URL reset');
             }
         }
         catch (e) {
