@@ -14,16 +14,16 @@ const SearchInput = () => {
     useEffect(() => {
         console.log('useEffect - search:', search);
         try {
-            let param = ''
-            if(search !== ''){
-                param = `/search?name=${search}`
-                router.replace(param, undefined, { shallow: true });
-                console.log('URL replaced');
-            }else{
-                param = '';
-                router.replace('/search', undefined, { shallow: true });
-                console.log('URL reset');
-            }
+            redirectToSearchResults();
+            // if(search !== ''){
+            //     let param = `/search?name=${search}`
+            //     router.replace(param, undefined, { shallow: true });
+            //     console.log('URL replaced');
+            // }else{
+            //     let param = '';
+            //     router.replace('/search', undefined, { shallow: true });
+            //     console.log('URL reset');
+            // }
         }
         catch (e) {
             console.error(e.response)
@@ -34,6 +34,19 @@ const SearchInput = () => {
     const handleSearchValue = useCallback((e) => { 
         setSearch(e.target.value)
     }, [pathName])
+
+    const redirectToSearchResults = (e) => {
+        e.preventDefault();
+        if(search !== ''){
+            let param = `/search?name=${search}`
+            router.replace(param, undefined, { shallow: true });
+            console.log('URL replaced');
+        }else{
+            let param = '';
+            router.replace('/search', undefined, { shallow: true });
+            console.log('URL reset');
+        }
+    }
 
     //검색어 지우기
     const cleanSearch = () => {
