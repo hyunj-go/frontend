@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
               <ul>
                 <li>
                   <div className="logo">
-                    <a className="mob-link" href="#">bakery <br/>in Seoul</a>
+                    <a className="mob-link" href="/">bakery <br/>in Seoul</a>
                   </div>
                 </li>
               </ul>
