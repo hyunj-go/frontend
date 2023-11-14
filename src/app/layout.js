@@ -1,6 +1,6 @@
 import './globals.css';
 import 'public/css/style.css';
-import SearchInput from './component/SearchInput';
+// import SearchInput from './component/SearchInput';
 
 export const metadata = {
   title: 'WEB',
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
             <div className="ticker">
               <div className="container">
                 <div className="u-pull-left ticker-text">
-                  <SearchInput></SearchInput>
+                  {/* <SearchInput></SearchInput> */}
                   <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
                       735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
