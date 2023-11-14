@@ -1,9 +1,14 @@
 "use client"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Review(props){
     const router = useRouter();
+
+    useEffect(()=>{
+        router.replace(`/read/${props.param}`, {shallow: true});
+    },[props])
+    
     const [modifiedData, setModifiedData] = useState({
         content: '',
         rating: '',
@@ -22,6 +27,24 @@ export default function Review(props){
         );
         // console.log(modifiedData);
     };
+
+    const getPosts = async ()=> {
+        const options = {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data: modifiedData })
+        }
+        const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
+        const posts = await data.json();
+        // window.location.replace(`/read/${props.param}`)
+        // router.replace(`/read/${props.param}`, {shallow: true});
+        // location.reload();
+
+        return posts;
+    }
+    
     return (
         <>
         <h3>REVIEWS</h3>
@@ -46,25 +69,7 @@ export default function Review(props){
         <p>{props.param}</p>
         {
             reviewEdit?
-            <form onSubmit={(e)=>{
-            e.preventDefault();
-            const options = {
-                method:'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data: modifiedData })
-            }
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options)
-            .then(res=>res.json())
-            .then(result=>{
-                console.log(result);
-                const lastId = modifiedData.bakery;
-                setReviewEdit(false);
-                // window.location.replace(`/read/${props.param}`)
-                // router.push(`/read/${lastId}`);
-            })
-        }}>
+            <form onSubmit={getPosts}>
             <p>
                 <textarea name="content" defaultValue={modifiedData.content} placeholder="content" onChange={handleChange}></textarea>
             </p>

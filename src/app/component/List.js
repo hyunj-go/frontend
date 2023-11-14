@@ -28,7 +28,7 @@ export default function List(props) {
                                         return (
                                             <div key={j} className="six columns">
                                                 <Link href={`/read/${bakeryItem.id}`}>
-                                                    <div className="specialty-block" style={{ 'backgroundImage':`url(${bakeryItem.attributes.image.data[0].attributes.formats.thumbnail.url})`}}></div>
+                                                    <div className="specialty-block" style={{ 'backgroundImage':`url(${bakeryItem.attributes.image.data[0].attributes.url})`}}></div>
                                                     <p>{bakeryItem.attributes.name}</p>
                                                 </Link>
                                             </div> 
