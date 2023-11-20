@@ -1,13 +1,13 @@
 "use client"
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Review(props){
-    const router = useRouter();
+    const [reviews, setReviews] = useState([]);
 
-    useEffect(()=>{
-        router.replace(`/read/${props.param}`, {shallow: true});
-    },[props])
+    //처음 가져온 해당 게시물의 댓글들을 state에 넣는다.
+    useEffect(() => {
+        setReviews(props.review.data);
+    }, []);
     
     const [modifiedData, setModifiedData] = useState({
         content: '',
@@ -17,17 +17,18 @@ export default function Review(props){
 
     let [reviewEdit, setReviewEdit] = useState(false);
     
-    const handleChange = function({ target: { name, value } }) {
-        
-        // console.log(name, value, typeof(value))
+    // const handleChange = function(event) {
+    //     const {name, value} = event.target;
+    const handleChange = function({ target: { name, value } }) { //event.target 안에 {event.target.name, event.target.value} 직접 구조분해할당
+
         setModifiedData(prev => ({
-            ...prev,
-            [name]: value,
-        })
+                ...prev,
+                [name]: value,
+            })
         );
-        // console.log(modifiedData);
     };
 
+    //댓글 작성
     const getPosts = async ()=> {
         const options = {
             method:'POST',
@@ -36,13 +37,28 @@ export default function Review(props){
             },
             body: JSON.stringify({ data: modifiedData })
         }
-        const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
-        const posts = await data.json();
-        // window.location.replace(`/read/${props.param}`)
-        // router.replace(`/read/${props.param}`, {shallow: true});
-        // location.reload();
+        const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
+        const updatedReviews = await reviewsData.json();
 
-        return posts;
+        return updatedReviews;
+    }
+
+    //댓글 삭제
+    const delReview = (id) => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${id}`, {
+            method:'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: null
+        })
+        .then((res) => res.json())
+            .then((result) => {
+                alert(`review ${id} ${result.data.attributes.content} deleted successfully`);
+                let copyReviews = JSON.parse(JSON.stringify(reviews));
+                copyReviews = reviews.filter(data => data.id !== id);
+                setReviews(copyReviews);
+        });
     }
     
     return (
@@ -50,14 +66,14 @@ export default function Review(props){
         <h3>REVIEWS</h3>
         <ul>
             {
-                props.review.data.map((review)=>{
+                reviews.map((review)=>{
                     return(
                     <li key={review.id}>
                         <p>content : {review.attributes.content}</p>
                         <p>rating : {review.attributes.rating}</p>
                         <div>
                             <a href='/update/id'>update</a>
-                            <button>delete</button>
+                            <button onClick={()=>{ delReview(review.id) }}>delete</button>
                         </div>
                     </li>
                     )
@@ -70,16 +86,16 @@ export default function Review(props){
         {
             reviewEdit?
             <form onSubmit={getPosts}>
-            <p>
-                <textarea name="content" defaultValue={modifiedData.content} placeholder="content" onChange={handleChange}></textarea>
-            </p>
-            <p>
-                <input type="text" name="rating" defaultValue={modifiedData.rating} placeholder="rating" onChange={handleChange}/>
-            </p>
-            <p>
-                <input type="submit" value="create"/>
-            </p>
-        </form> : null
+                <p>
+                    <textarea name="content" defaultValue={modifiedData.content} placeholder="content" onChange={handleChange}></textarea>
+                </p>
+                <p>
+                    <input type="text" name="rating" defaultValue={modifiedData.rating} placeholder="rating" onChange={handleChange}/>
+                </p>
+                <p>
+                    <input type="submit" value="create"/>
+                </p>
+            </form> : null
         }
         </>
     )
