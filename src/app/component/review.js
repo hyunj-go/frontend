@@ -111,7 +111,7 @@ export default function Review(props){
                         <Rating initialValue={review.attributes.rating} allowFraction="true" size="20" readonly="true" />
                         <p>content : <input type="text" value={review.attributes.content} readOnly/></p>
                         <div>
-                            <button onClick={()=>{ updateReview(review.id) }}>update</button>
+                            <button onClick={()=>{  }}>update</button>
                             <button onClick={()=>{ delReview(review.id) }}>delete</button>
                         </div>
                     </li>
