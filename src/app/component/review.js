@@ -211,7 +211,6 @@ export default function Review(props){
         </ul>
         
         
-        {/* <p>{props.param}</p> */}
         {
             reviewCreate?
             <form onSubmit={getPosts}>

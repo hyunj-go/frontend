@@ -1693,7 +1693,9 @@ nav {
     display:flex;
     flex-direction: row;
 }
-
+.ticker .ticker-text .logo {
+    padding:1rem 0;
+}
 .ticker .ticker-text .menus-ticker,
 .ticker .ticker-text .number-ticker {
     margin-right:2rem;
@@ -2870,7 +2872,8 @@ select:focus {
     outline: 0;
 }
 
-input[readonly] {
+input[readonly],
+textarea[readonly] {
     border:0;
 }
 

@@ -18,14 +18,17 @@ export default function RootLayout({ children }) {
             <div className="ticker">
               <div className="container">
                 <div className="u-pull-left ticker-text">
+                  <div className="logo">
+                    <a className="mob-link" href="/">bakery <br/>in Seoul</a>
+                  </div>
                   {/* <SearchInput></SearchInput> */}
-                  <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
+                  {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
                       735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
                         className="fa fa-map-marker" aria-hidden="true"></i> 
                       Long Lake Road 128</a></p>
                   <p className="mobile-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
-                        className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a></p>
+                        className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a></p> */}
                 </div>
                 <div className="u-pull-right ticker-text">
                   <p className="menus-ticker"><a data-scroll className="mob-link" href="#menus"><i className="fa fa-book"
