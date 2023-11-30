@@ -1696,6 +1696,12 @@ nav {
 .ticker .ticker-text .logo {
     padding:1rem 0;
 }
+.ticker .ticker-text .logo a {
+    font-size: 1.4rem;
+    position: relative;
+    width: 100%;
+    text-transform: none;
+}
 .ticker .ticker-text .menus-ticker,
 .ticker .ticker-text .number-ticker {
     margin-right:2rem;
@@ -1746,13 +1752,6 @@ nav {
 .ticker p a:before {
     height: 1px;
     left: 0;
-}
-
-.logo a {
-    font-size: 1.6rem;
-    position: relative;
-    top: 40%;
-    width: 100%;
 }
 
 .mobile-nav {
@@ -2707,7 +2706,7 @@ a {
     color: #FFF8EB;
     font-size: 1.4rem;
     font-weight: 600;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-decoration: none;
     -webkit-transition: .35s linear;
     transition: .35s linear;

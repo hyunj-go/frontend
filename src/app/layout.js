@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
               <div className="container">
                 <div className="u-pull-left ticker-text">
                   <div className="logo">
-                    <a className="mob-link" href="/">bakery <br/>in Seoul</a>
+                    <a className="mob-link" href="/">BAKERY in SEOUL</a>
                   </div>
                   {/* <SearchInput></SearchInput> */}
                   {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
