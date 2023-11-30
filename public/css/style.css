@@ -252,7 +252,9 @@ table {
     border-spacing: 0
 }
 
-
+ul, ol, li {
+    list-style:none;
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -2866,6 +2868,10 @@ textarea:focus,
 select:focus {
     border: 1px solid #33C3F0;
     outline: 0;
+}
+
+input[readonly] {
+    border:0;
 }
 
 label,
@@ -6887,5 +6893,5 @@ hr {
 }
 
 
-
+/* style */
 .inner {padding-top:200px;}

@@ -41,13 +41,13 @@ export default function RootLayout({ children }) {
                 <li><a className="mob-link" href="#bakery">bakery</a></li>
                 <li><a className="mob-link" href="#contact">Contact</a></li>
               </ul>
-              <ul>
+              {/* <ul>
                 <li>
                   <div className="logo">
                     <a className="mob-link" href="/">bakery <br/>in Seoul</a>
                   </div>
                 </li>
-              </ul>
+              </ul> */}
               <div className="container">
                 <button className="hamburger hamburger--squeeze u-pull-right" type="button"> <span className="hamburger-box">
                     <span className="hamburger-inner"></span> </span>

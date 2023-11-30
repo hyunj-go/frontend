@@ -7,70 +7,103 @@ import { faStar as fasFaStar } from "@fortawesome/free-solid-svg-icons";
 library.add(farFaStar, fasFaStar)
 
 import { Rating } from 'react-simple-star-rating'
+import { formToJSON } from "axios";
+
+// // Parses the JSON returned by a network request
+// const parseJSON = resp => (resp.json ? resp.json() : resp);
+// // Checks if a network request came back fine, and throws an error if not
+// const checkStatus = resp => {
+//     if (resp.status >= 200 && resp.status < 300) {
+//     return resp;
+//     }
+//     return parseJSON(resp).then(resp => {
+//     throw resp;
+//     });
+// };
+const headers = {
+    'Content-Type': 'application/json',
+};
 
 export default function Review(props){
+    // const ref = useRef(null);
     const [reviews, setReviews] = useState([]);
-    const [rating, setRating] = useState(0)
+    const [reviewCreate, setReviewCreate] = useState(false);
+    const [isEditing, setEditing] = useState(false);
+    const [editingReviewId, setEditingReviewId] = useState(null);
 
     //처음 가져온 해당 게시물의 댓글들을 state에 넣는다.
     useEffect(() => {
         setReviews(props.review.data);
     }, []);
     
+    const [createdData, setCreatedData] = useState({
+        content: '',
+        rating: '',
+        bakery: props.param,
+    });
     const [modifiedData, setModifiedData] = useState({
         content: '',
         rating: '',
         bakery: props.param,
     });
 
-    let [reviewEdit, setReviewEdit] = useState(false);
-    
-
     // const handleChange = function({ target: { name, value } }) { //event.target 안에 {event.target.name, event.target.value} 직접 구조분해할당
-    const handleChange = function(e) {
-        const {name, value} = e.target;
+    const handleChange = (data) => {
+        let name = ''
+        let value = ''
+        if(data.target){ //input값일 경우
+            name = data.target.name
+            value = data.target.value
+        }else {//rating값일 경우
+            name = 'rating'
+            value = data
+        }
+        setCreatedData(prev => ({
+                ...prev,
+                [name]: value,
+            })
+        );
+        console.log(createdData);
+    };
 
+    const reviewChange = (data) => {
+        let name = ''
+        let value = ''
+        if(data.target){ //input값일 경우
+            name = data.target.name
+            value = data.target.value
+        }else {//rating값일 경우
+            name = 'rating'
+            value = data
+        }
         setModifiedData(prev => ({
                 ...prev,
                 [name]: value,
             })
         );
-    };
-
-    //별점
-    // Catch Rating value
-    const handleRating = (rate) => {
-        setRating(rate)
-        setModifiedData(prev => ({
-                ...prev,
-                rating: rate,
-            })
-        );
         console.log(modifiedData);
-    }
+    };
 
     //댓글 작성
     const getPosts = async ()=> {
-        const options = {
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data: modifiedData })
-        }
-        const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
-        const updatedReviews = await reviewsData.json();
 
-        return updatedReviews;
+        try {
+            const options = {
+                method:'POST',
+                headers,
+                body: JSON.stringify({ data: createdData })
+            }
+            const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
+            const updatedReviews = await reviewsData.json();
+            return updatedReviews;
+        } catch{}
     }
 
     //댓글 삭제
     const delReview = (id) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${id}`, {
             method:'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers,
             body: null
         })
         .then((res) => res.json())
@@ -83,35 +116,92 @@ export default function Review(props){
     }
 
     //댓글 수정
+    const editReview = (id) => {
+        // setEditing(!isEditing);
+        setEditingReviewId(id);
+        
+
+        //클릭한 리뷰 내용 세팅
+        // for(let i = 0; i<reviews.length; i++){
+        //     if(reviews[i].id == id){
+        //         const { content, rating } = reviews[i].attributes;
+        //         const extractedProperties = { content, rating };
+
+        //         setModifiedData(prev => ({
+        //                 ...prev,
+        //                 ...extractedProperties,
+        //             })
+        //         );
+        //     }
+        // }
+        const thisReview = reviews.filter(data => data.id == id); console.log(thisReview);
+        const { content, rating } = thisReview[0].attributes;
+        const extractedProperties = { content, rating };
+        setModifiedData(prev => ({
+                ...prev,
+                ...extractedProperties,
+            })
+        );
+        console.log(modifiedData);
+    }
     const updateReview = (id) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${id}`, {
             method:'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: null
+            headers,
+            body: JSON.stringify({ data: modifiedData })
         })
         .then((res) => res.json())
             .then((result) => {
-                alert(`review ${id} ${result.data.attributes.content} deleted successfully`);
-                let copyReviews = JSON.parse(JSON.stringify(reviews));
-                copyReviews = reviews.filter(data => data.id !== id);
-                setReviews(copyReviews);
+                alert(`review ${id} modified successfully`);  
+                const copyReviews = JSON.parse(JSON.stringify(reviews));
+                // copyReviews = props.review.data;
+                let thisCopyReviews = copyReviews.filter(data => data.id == id);
+                const { content, rating } = result.data.attributes;
+                thisCopyReviews[0].attributes.content = content;
+                thisCopyReviews[0].attributes.rating = rating;
+                console.log(copyReviews);console.log(thisCopyReviews);
+                setReviews(copyReviews);console.log(reviews)
+                // setEditing(false);
+                setEditingReviewId(null);
+                console.log(editingReviewId);
+        })
+        .catch((error) => {
+            console.error('Error modified review:', error);
         });
+    }
+    const cancelUpdateReview = () => {
+        setEditingReviewId(null);
+        // setModifiedData({
+        //     content: '',
+        //     rating: '',
+        //     bakery: props.param,
+        // })
+        console.log(modifiedData);
+        console.log(reviews);
     }
 
     return (
         <>
-        <h3>REVIEWS</h3> 
+        <h3>REVIEWS <span>({reviews.length})</span></h3> 
         <ul>
             {
                 reviews.map((review)=>{
                     return(
                     <li key={review.id}>
-                        <Rating initialValue={review.attributes.rating} allowFraction="true" size="20" readonly="true" />
-                        <p>content : <input type="text" value={review.attributes.content} readOnly/></p>
+                        <Rating initialValue={editingReviewId === review.id ? modifiedData.rating : review.attributes.rating} onClick={reviewChange} allowFraction="true" size="24" readonly={editingReviewId === review.id ? false : true}/>
+                        <div>{(review.attributes.createdAt).split('T')[0]}</div>
+                        <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange}  readOnly={editingReviewId === review.id ? false : true}/></div>
                         <div>
-                            <button onClick={()=>{  }}>update</button>
+                            {
+                                editingReviewId === review.id ? (
+                                    <>
+                                        <button onClick={() => updateReview(review.id)}>Update</button>
+                                        <button onClick={() => cancelUpdateReview()}>Cancel</button>
+                                    </>
+                                ) : (
+                                    <button onClick={() => editReview(review.id)}>Edit</button>
+                                )
+                            }
                             <button onClick={()=>{ delReview(review.id) }}>delete</button>
                         </div>
                     </li>
@@ -120,26 +210,25 @@ export default function Review(props){
             }
         </ul>
         
-        <button onClick={()=>{ setReviewEdit(true); }}>리뷰작성</button>
-        <p>{props.param}</p>
+        
+        {/* <p>{props.param}</p> */}
         {
-            reviewEdit?
+            reviewCreate?
             <form onSubmit={getPosts}>
                 <Rating
-                    onClick={handleRating}
+                    onClick={handleChange}
                     allowFraction="true"
                 />
-                <p>
-                    <textarea name="content" defaultValue={modifiedData.content} placeholder="content" onChange={handleChange}></textarea>
-                </p>
+                <div><textarea name="content" defaultValue={createdData.content} placeholder="content" onChange={handleChange}></textarea></div>
                 {/* <FontAwesomeIcon icon={ farFaStar } /> */}
-                <p>
-                    {/* <input type="number" name="rating" class="raring" defaultValue={modifiedData.rating} placeholder="rating" onChange={handleChange}/> */}
-                </p>
+                {/* <p>
+                    <input type="number" name="rating" class="raring" defaultValue={createdData.rating} placeholder="rating" onChange={handleChange}/>
+                </p> */}
                 <p>
                     <input type="submit" value="create"/>
+                    <button onClick={() => {setReviewCreate(false);}}>Cancel</button>
                 </p>
-            </form> : null
+            </form> : <button onClick={()=>{ setReviewCreate(true); }}>리뷰작성</button>
         }
         </>
     )
