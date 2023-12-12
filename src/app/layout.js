@@ -1,12 +1,6 @@
 import './globals.css';
 import 'public/css/style.css';
 // import SearchInput from './component/SearchInput';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
-// import { library } from "@fortawesome/fontawesome-svg-core";
-// import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
-// import { faStar as fasFaStar } from "@fortawesome/free-solid-svg-icons";
-// library.add(farFaStar, fasFaStar)
 
 export const metadata = {
   title: 'WEB',
@@ -37,20 +31,16 @@ export default function RootLayout({ children }) {
                         className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a></p> */}
                 </div>
                 <div className="u-pull-right ticker-text">
-                  <p className="menus-ticker">
-                    <a data-scroll className="mob-link" href="#menus">
-                      {/* <FontAwesomeIcon icon={ faBreadSlice } color={ 'white' } size={ 10 } />  */}
-                      story
-                    </a>
-                  </p>
-                  <p>&nbsp;&nbsp;<a data-scroll href="#contact"> login</a></p>
+                  <p className="menus-ticker"><a data-scroll className="mob-link" href="#menus"><i className="fa fa-book"
+                        aria-hidden="true"></i> Menus</a></p>
+                  <p>&nbsp;&nbsp;<a data-scroll href="#contact"><i className="fa fa-clock-o" aria-hidden="true"></i> Hours of operation</a></p>
                 </div>
                 <div className="u-cf"></div>
               </div>
             </div>
             <div className="mobile-nav">
               <ul className="mobile-links">
-                <li><a className="mob-link" href="#story">story</a></li>
+                <li><a className="mob-link" href="#about">About</a></li>
                 <li><a className="mob-link" href="#bakery">bakery</a></li>
                 <li><a className="mob-link" href="#contact">Contact</a></li>
               </ul>
