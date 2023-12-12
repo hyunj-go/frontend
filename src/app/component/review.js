@@ -209,6 +209,7 @@ export default function Review(props){
                     allowFraction="true"
                 />
                 <div><textarea name="content" defaultValue={createdData.content} placeholder="content" onChange={handleChange}></textarea></div>
+                {/* <FontAwesomeIcon icon={ farFaStar } /> */}
                 {/* <p>
                     <input type="number" name="rating" class="raring" defaultValue={createdData.rating} placeholder="rating" onChange={handleChange}/>
                 </p> */}
