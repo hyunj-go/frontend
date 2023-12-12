@@ -43,7 +43,8 @@ export default function RootLayout({ children }) {
                       story
                     </a>
                   </p>
-                  <p>&nbsp;&nbsp;<a data-scroll href="#contact"> login</a></p>
+                  <p>&nbsp;&nbsp;<a data-scroll href="/member/login"> login</a></p>
+                  <p>&nbsp;&nbsp;<a data-scroll href="/member/join"> join</a></p>
                 </div>
                 <div className="u-cf"></div>
               </div>
