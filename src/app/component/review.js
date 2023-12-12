@@ -1,6 +1,13 @@
 "use client"
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as fasFaStar } from "@fortawesome/free-solid-svg-icons";
+library.add(farFaStar, fasFaStar)
+
 import { Rating } from 'react-simple-star-rating'
+import { formToJSON } from "axios";
 
 // // Parses the JSON returned by a network request
 // const parseJSON = resp => (resp.json ? resp.json() : resp);
@@ -21,6 +28,7 @@ export default function Review(props){
     // const ref = useRef(null);
     const [reviews, setReviews] = useState([]);
     const [reviewCreate, setReviewCreate] = useState(false);
+    const [isEditing, setEditing] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState(null);
 
     //처음 가져온 해당 게시물의 댓글들을 state에 넣는다.
@@ -109,6 +117,7 @@ export default function Review(props){
 
     //댓글 수정
     const editReview = (id) => {
+        // setEditing(!isEditing);
         setEditingReviewId(id);
         
 
@@ -152,6 +161,7 @@ export default function Review(props){
                 thisCopyReviews[0].attributes.rating = rating;
                 console.log(copyReviews);console.log(thisCopyReviews);
                 setReviews(copyReviews);console.log(reviews)
+                // setEditing(false);
                 setEditingReviewId(null);
                 console.log(editingReviewId);
         })
