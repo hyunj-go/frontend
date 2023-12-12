@@ -28,7 +28,7 @@ const Story = async () => {
                             </svg>
                         </div>
                     </div>
-                    <div className="six columns story-overflow u-pull-right">
+                    <div className="six columns u-pull-right">
                         <div className="story-img" style={{ 'backgroundImage':`url(${storyBg})`}}></div>
                     </div>
                     <div className="u-cf"></div>

@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="u-pull-right ticker-text">
                   <p className="menus-ticker">
-                    <a data-scroll className="mob-link" href="#menus">
+                    <a data-scroll className="mob-link" href="/story">
                       {/* <FontAwesomeIcon icon={ faBreadSlice } color={ 'white' } size={ 10 } />  */}
                       story
                     </a>
@@ -50,9 +50,9 @@ export default function RootLayout({ children }) {
             </div>
             <div className="mobile-nav">
               <ul className="mobile-links">
-                <li><a className="mob-link" href="#story">story</a></li>
-                <li><a className="mob-link" href="#bakery">bakery</a></li>
-                <li><a className="mob-link" href="#contact">Contact</a></li>
+                <li><a className="mob-link" href="/story">story</a></li>
+                <li><a className="mob-link" href="/bakery">bakery</a></li>
+                <li><a className="mob-link" href="/contact">Contact</a></li>
               </ul>
               {/* <ul>
                 <li>
