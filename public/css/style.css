@@ -2816,6 +2816,13 @@ input[type="button"].button-primary:focus {
     border-color: #1EAEDB;
 }
 
+.button.w-full,
+button.w-full,
+input[type="submit"].w-full,
+input[type="reset"].w-full,
+input[type="button"].w-full{
+    width:100%;
+}
 
 
 /* Forms

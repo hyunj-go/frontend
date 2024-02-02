@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Rating } from 'react-simple-star-rating'
 
 // // Parses the JSON returned by a network request
@@ -18,7 +18,7 @@ const headers = {
 };
 
 export default function Review(props){
-    // const ref = useRef(null);
+    const reviewInput = useRef(null);
     const [reviews, setReviews] = useState([]);
     const [reviewCreate, setReviewCreate] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState(null);
@@ -27,6 +27,13 @@ export default function Review(props){
     useEffect(() => {
         setReviews(props.review.data);
     }, []);
+
+    // 리뷰작성 클릭시 포커스
+    useEffect(() => {
+        if (reviewCreate && reviewInput.current) {
+            reviewInput.current.focus();
+        }
+    }, [reviewCreate]);
     
     const [createdData, setCreatedData] = useState({
         content: '',
@@ -171,53 +178,53 @@ export default function Review(props){
     }
 
     return (
-        <>
-        <h3>REVIEWS <span>({reviews.length})</span></h3> 
-        <ul>
+        <div className="review-area">
+            <h3>REVIEWS <span>({reviews.length})</span></h3> 
             {
-                reviews.map((review)=>{
-                    return(
-                    <li key={review.id}>
-                        <Rating initialValue={editingReviewId === review.id ? modifiedData.rating : review.attributes.rating} onClick={reviewChange} allowFraction="true" size="24" readonly={editingReviewId === review.id ? false : true}/>
-                        <div>{(review.attributes.createdAt).split('T')[0]}</div>
-                        <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange}  readOnly={editingReviewId === review.id ? false : true}/></div>
-                        <div>
-                            {
-                                editingReviewId === review.id ? (
-                                    <>
-                                        <button onClick={() => updateReview(review.id)}>Update</button>
-                                        <button onClick={() => cancelUpdateReview()}>Cancel</button>
-                                    </>
-                                ) : (
-                                    <button onClick={() => editReview(review.id)}>Edit</button>
-                                )
-                            }
-                            <button onClick={()=>{ delReview(review.id) }}>delete</button>
-                        </div>
-                    </li>
-                    )
-                })
+                reviewCreate?
+                <form onSubmit={getPosts} className="review-input">
+                    <Rating
+                        onClick={handleChange}
+                        allowFraction="true"
+                    />
+                    <div><textarea name="content" defaultValue={createdData.content} placeholder="content" onChange={handleChange} ref={reviewInput}></textarea></div>
+                    {/* <p>
+                        <input type="number" name="rating" className="raring" defaultValue={createdData.rating} placeholder="rating" onChange={handleChange}/>
+                    </p> */}
+                    <div className="btn-wrap">
+                        <input type="submit" value="create"/>
+                        <button onClick={() => {setReviewCreate(false);}}>Cancel</button>
+                    </div>
+                </form> : <button className="w-full" onClick={()=>{ setReviewCreate(true);setCreatedData( prev => ({...prev, content: '',}) ); }}>리뷰작성</button>
             }
-        </ul>
-        
-        
-        {
-            reviewCreate?
-            <form onSubmit={getPosts}>
-                <Rating
-                    onClick={handleChange}
-                    allowFraction="true"
-                />
-                <div><textarea name="content" defaultValue={createdData.content} placeholder="content" onChange={handleChange}></textarea></div>
-                {/* <p>
-                    <input type="number" name="rating" class="raring" defaultValue={createdData.rating} placeholder="rating" onChange={handleChange}/>
-                </p> */}
-                <p>
-                    <input type="submit" value="create"/>
-                    <button onClick={() => {setReviewCreate(false);}}>Cancel</button>
-                </p>
-            </form> : <button onClick={()=>{ setReviewCreate(true); }}>리뷰작성</button>
-        }
-        </>
+            <ul className="review-output">
+                {
+                    reviews.map((review)=>{
+                        return(
+                        <li key={review.id}>
+                            <Rating initialValue={editingReviewId === review.id ? modifiedData.rating : review.attributes.rating} onClick={reviewChange} allowFraction="true" size="24" readonly={editingReviewId === review.id ? false : true}/>
+                            <div>{(review.attributes.createdAt).split('T')[0]}</div>
+                            
+                            <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange} readOnly={editingReviewId === review.id ? false : true}/></div>
+                            <div className="btn-wrap">
+                                {
+                                    editingReviewId === review.id ? (
+                                        <>
+                                            <button onClick={() => updateReview(review.id)}>Update</button>
+                                            <button onClick={() => cancelUpdateReview()}>Cancel</button>
+                                        </>
+                                    ) : (
+                                        <button onClick={() => editReview(review.id)}>Edit</button>
+                                    )
+                                }
+                                <button onClick={()=>{ delReview(review.id) }}>delete</button>
+                            </div>
+                        </li>
+                        )
+                    })
+                }
+            </ul>
+
+        </div>
     )
 }

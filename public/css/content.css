@@ -1,0 +1,12 @@
+/*
+review 
+*/
+.review-area {padding:20px;}
+.review-area .review-input textarea{width:100%;}
+.review-area .review-output li {padding:20px 0;}
+.review-area .review-output li + li {border-top:1px solid #ddd;}
+.review-area .review-output li input{width:100%;}
+.review-area .review-input .btn-wrap input,
+.review-area .review-output .btn-wrap button{margin-bottom:0;}
+.review-area .review-input .btn-wrap input + button,
+.review-area .review-output .btn-wrap button + button{margin-left:6px;}
