@@ -15,16 +15,16 @@ const SearchInput = () => {
     useEffect(() => {
         try {
             console.log(search)
-            // if(search !== null){
-            //     if(search) {
-            //         const url = `/search?name=${search}`
-            //         // router.replace(url)
-            //         router.push(url, undefined, { shallow: true })
-            //         console.log(search);
-            //     }else if(search==''){
-            //         router.replace(currentPathName)
-            //     }
-            // }
+            if(search !== null){
+                if(search) {
+                    const url = `/search?name=${search}`
+                    // router.replace(url)
+                    router.push(url, undefined, { shallow: true })
+                    console.log(search);
+                }else if(search==''){
+                    router.replace(currentPathName)
+                }
+            }
         }
         catch (e) {
             console.error(e.response)
