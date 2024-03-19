@@ -8,16 +8,16 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 const SearchInput = () => {
     const router = useRouter()
     const pathName = usePathname()
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('noSearch')
     let [currentPathName, setCurrentPathName] = useState('/');
     
     //검색값이 변할때마다 새롭게 요청
     useEffect(() => {
         try {
-            if(search) {
+            if(search && (search!=='noSearch')) {
                 const url = `/search?name=${search}`
                 router.replace(url)
-                setSearch(search);
+                //setSearch(search);
                 console.log(search);
             }else{console.log(currentPathName);
                 //router.replace(currentPathName)
@@ -48,7 +48,7 @@ const SearchInput = () => {
     return (
         <>
             <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={search} onChange={handleSearchValue} />
+                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' value={search!=='noSearch'? search : ''} onChange={handleSearchValue} />
                 {search && <TiDelete onClick={cleanSearch} size={20}/>}
                 <BsSearch size={20} />
             </div>
