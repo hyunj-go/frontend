@@ -20,8 +20,8 @@ const SearchInput = () => {
                     router.replace(url)
                     //setSearch(search);
                     console.log(search);
-                }else if(search==''){console.log(currentPathName);
-                    //router.replace(currentPathName)
+                }else if(search==''){
+                    router.replace(currentPathName)
                 }
             }
         }
