@@ -19,8 +19,8 @@ const SearchInput = () => {
                 router.replace(url)
                 setSearch(search);
                 console.log(search);
-            }else{
-                router.replace(currentPathName)
+            }else{console.log(currentPathName);
+                //router.replace(currentPathName)
             }
         }
         catch (e) {

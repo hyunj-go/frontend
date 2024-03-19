@@ -1,6 +1,6 @@
 import './globals.css';
 import 'public/css/style.css';
-// import SearchInput from './component/SearchInput';
+import SearchInput from './component/SearchInput';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
 // import { library } from "@fortawesome/fontawesome-svg-core";
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
                   <div className="logo">
                     <a className="mob-link" href="/">BAKERY in SEOUL</a>
                   </div>
-                  {/* <SearchInput></SearchInput> */}
+                  <SearchInput></SearchInput>
                   {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
                       735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
