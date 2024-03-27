@@ -1,8 +1,11 @@
 import './globals.css';
 import 'public/css/style.css';
-import SearchInput from './component/SearchInput';
+import 'public/css/content.css';
+import Link from 'next/link';
+// import SearchInput from './component/SearchInput';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
+import { BsSearch } from "react-icons/bs"
 // import { library } from "@fortawesome/fontawesome-svg-core";
 // import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
 // import { faStar as fasFaStar } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +30,7 @@ export default function RootLayout({ children }) {
                   <div className="logo">
                     <a className="mob-link" href="/">BAKERY in SEOUL</a>
                   </div>
-                  <SearchInput></SearchInput>
+                  {/* <SearchInput></SearchInput> */}
                   {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
                       735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
@@ -38,13 +41,14 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="u-pull-right ticker-text">
                   <p className="menus-ticker">
-                    <a data-scroll className="mob-link" href="/story">
+                    <Link href="/story">
                       {/* <FontAwesomeIcon icon={ faBreadSlice } color={ 'white' } size={ 10 } />  */}
                       story
-                    </a>
+                    </Link>
                   </p>
-                  <p>&nbsp;&nbsp;<a data-scroll href="/member/login"> login</a></p>
-                  <p>&nbsp;&nbsp;<a data-scroll href="/member/join"> join</a></p>
+                  <p>&nbsp;&nbsp;<Link href="/member/login"> login</Link></p>
+                  <p>&nbsp;&nbsp;<Link href="/member/join"> join</Link></p>
+                  <Link href="/read" className="btn-search"><BsSearch size={20}/></Link>
                 </div>
                 <div className="u-cf"></div>
               </div>

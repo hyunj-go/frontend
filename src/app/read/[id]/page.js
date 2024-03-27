@@ -31,14 +31,14 @@ const BakeryIdPage = async(props) => {
     const review = await fetchReviews(props.params.id);
 
     return(
-        <>  
+        <div className="wrapper">  
             <h2>{bakery.data.attributes.name}</h2>
             <p>{bakery.data.attributes.description}</p>
             {bakery.data.attributes.image.data.map((bakeryImg)=>{
             return <li key={bakeryImg.id}><img src={bakeryImg.attributes.url} alt={bakery.data.attributes.name}/></li>
             })}
             <Review param={bakery.data.id} review={review}/>
-        </>
+        </div>
     )
 }
 

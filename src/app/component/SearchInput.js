@@ -4,56 +4,37 @@ import { TiDelete } from "react-icons/ti";
 import {useCallback, useEffect, useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-//input에 검색어를 적을때마다 page이동하면서 검색어와 page값이 query로 전해진다
+//input에 검색어를 적을때마다 검색어와 page값이 query로 전해진다
 const SearchInput = () => {
-    const router = useRouter()
+    const { replace } = useRouter()
     const pathName = usePathname()
-    const [search, setSearch] = useState(null)
-    let [currentPathName, setCurrentPathName] = useState('/');
-    
-    //검색값이 변할때마다 새롭게 요청
-    useEffect(() => {
-        try {
-            console.log(search)
-            if(search !== null){
-                if(search) {
-                    const url = `/search?name=${search}`
-                    // router.replace(url)
-                    router.push(url, undefined, { shallow: true })
-                    console.log(search);
-                }else if(search==''){
-                    router.replace(currentPathName)
-                }
-            }
-        }
-        catch (e) {
-            console.error(e.response)
-        }
-    }, [search])
+    const searchParams = useSearchParams()
+    const params = new URLSearchParams(searchParams) //객체 변환
 
-    //search 값이 바뀔때 재호출 (useCallback 쓰면 불러올때마다 함수 생성하지 않고 기존 함수 사용)
-    const handleSearchValue = useCallback((e) => { 
-        setSearch(e.target.value)
+    const handleSearchValue = (name) => {
 
-        //이전페이지 저장
-        if(pathName !== '/search'){
-            setCurrentPathName(pathName);
+        if(name) {
+            params.set('name', name);
+        }else {
+            params.delete('name');
         }
-    }, [search])
+
+        replace(`${pathName}?${params.toString()}`);
+    }
 
     //검색어 지우기
     const cleanSearch = () => {
-        setSearch('')
+        params.delete('name');
+        replace(`${pathName}?${params.toString()}`);
     }
-
     
 
     return (
         <>
-            <div>
-                <input type='text' placeholder='검색어를 입력하세요' autoFocus autoComplete='off' defaultValue={search!==null ? search : ''} onChange={handleSearchValue} />
-                {search && <TiDelete onClick={cleanSearch} size={20}/>}
-                <BsSearch size={20} />
+            <div className="input-search">
+                <input type='text' placeholder='Search bakeries' autoFocus autoComplete='off' value={params.get('name')||''} onChange={(e)=> handleSearchValue(e.target.value)} />
+                {searchParams.get("name") && <TiDelete onClick={cleanSearch} size={20} className="btn-delSch"/>}
+                <BsSearch size={20} className="btn-sch" />
             </div>
         </>
     )

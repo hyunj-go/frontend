@@ -8,7 +8,7 @@ const Story = async () => {
     const storyBg = story.attributes.background.data.attributes.url;
 
     return(
-        <>
+        <div className='wrapper'>
             <div className='inner'>
                 <div className="our-story" id="story">
                     <div className="six columns story-text u-pull-left" data-mh="story">
@@ -36,7 +36,7 @@ const Story = async () => {
 
 
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+@import url('https://cdnjs.cludflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 /*
 * Skeleton V2.0.4
 * Copyright 2014, Dave Gamache
@@ -42,7 +44,7 @@ th {
 }
 
 html {
-    font-family: sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -426,7 +428,7 @@ body {
     /* currently ems cause chrome bug misinterpreting rems on body element */
     line-height: 1.6;
     font-weight: 400;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     color: #352824;
 }
 
@@ -446,6 +448,7 @@ body {
     height: 100vh;
     border: none;
     border-bottom: 20rem solid #352824;
+    background-color:#352824;
 }
 
 .bg-container {
@@ -508,7 +511,9 @@ body {
 
 @media (max-width:768px) {
     .header {
-        border-bottom: 35rem solid #352824;
+        background-color:#2C211E;
+        border:0;
+        /* border-bottom: 35rem solid #352824; */
     }
     .header-content {
         margin-top: 0%;
@@ -520,7 +525,7 @@ body {
 
 @media (max-width:550px) {
     .header {
-        border-bottom: 55rem solid #352824;
+        /* border-bottom: 55rem solid #352824; */
     }
     .header h1 {
         font-size: 3.5rem;
@@ -597,15 +602,14 @@ body {
 
 .content p {
     color: #FFF8EB;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.4rem;
-    padding: 4rem;
+    padding:0;
     width: 100%;
 }
 
 @media (max-width: 768px) {
-    .bg-container,
-    .header {
+    .bg-container {
         height: 40vh;
         margin-top: 47px;
     }
@@ -633,9 +637,9 @@ body {
         float: none;
     }
     .content p {
-        font-family: 'Lora', serif;
+        font-family: "Lora", "Noto Sans KR", sans-serif;;
         font-size: 2rem;
-        padding: 1rem 0rem;
+        padding:0;
     }
 }
 
@@ -752,7 +756,7 @@ body {
 }
 
 .about-callout p {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 3rem;
     line-height: 5rem;
     text-align: center;
@@ -891,7 +895,7 @@ body {
 }
 
 .carousel-desc p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 2rem;
     color: #FFF8EB;
     padding: 3rem;
@@ -917,7 +921,7 @@ body {
 }
 
 .menu h2 {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.4rem;
     text-transform: uppercase;
     font-weight: 900;
@@ -964,7 +968,7 @@ body {
 }
 
 .menu-grid p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.4rem;
     color: #FFF7EA;
     letter-spacing: 0.1rem;
@@ -1182,7 +1186,7 @@ ul.menu-list li a i {
 }
 
 .callout p {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.4rem;
     text-align: center;
     max-width: 450px;
@@ -1350,7 +1354,7 @@ ul.menu-list li a i {
 }
 
 .social-callout h5 {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.4rem;
     text-transform: uppercase;
     text-align: center;
@@ -1359,7 +1363,7 @@ ul.menu-list li a i {
 }
 
 .social-callout p {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.2rem;
     text-align: center;
     font-weight: 500;
@@ -1369,7 +1373,7 @@ ul.menu-list li a i {
 .social-links li a {
     list-style: none;
     color: #231F1F;
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 2.8rem;
     letter-spacing: 0.2rem;
     margin: 0;
@@ -1487,7 +1491,7 @@ ul.menu-list li a i {
 
 .story-text p {
     color: #FFF8EB;
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.8rem;
     line-height: 2;
 }
@@ -1574,7 +1578,7 @@ p.definition {
 }
 
 .contact p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     letter-spacing: 0.12rem;
     font-size: 1.4rem;
 }
@@ -1591,7 +1595,7 @@ p.definition {
 
 .contact ul {
     list-style: none;
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     letter-spacing: 0.12rem;
     font-size: 1.4rem;
     margin: 0;
@@ -1916,7 +1920,7 @@ nav {
 }
 
 .holidays .christmas-specialty-notice a {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     color: #2C211E;
     margin-top: 1rem;
     display: inline-block;
@@ -1975,7 +1979,7 @@ nav {
 }
 
 .holidays ul {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     list-style: none;
     text-align: left;
     margin: 0 auto 4rem;
@@ -2005,7 +2009,7 @@ nav {
 .holidays-2 p,
 .cakes-section p,
 .pies-section p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 2;
@@ -2066,7 +2070,7 @@ img.xmas-img-02 {
 
 #cakes ul,
 #pies ul {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     list-style: none;
     text-align: center;
     column-count: 2;
@@ -2162,13 +2166,13 @@ img.gift-basket {
 }
 
 .catering-gift-baskets p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 2;
 }
 
-.order-form {
+.input-form {
     background-color:#FFF7EA;
     width:95%;
     max-width:150rem;
@@ -2179,7 +2183,7 @@ img.gift-basket {
 }
 
 @media only screen and (max-width:55em) {
-.order-form {
+.input-form {
     background-color: #FFF7EA;
     width: 100%;
     max-width: 150rem;
@@ -2190,84 +2194,89 @@ img.gift-basket {
 }
 }
 
-.order-form .text {
-    font-family: 'Lora', serif;
+.input-form .text {
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     text-align: center;
     margin-bottom:7.5rem;
 }
 
 @media only screen and (max-width:35em) {
-    .order-form .text { 
+    .input-form .text { 
         margin-bottom:3.5rem;
     }
 }
 
-.order-form .text h5 {
+.input-form .text h5 {
     font-size:1.8rem;
     font-weight:600;
     letter-spacing: 0.056rem;
 }
 
-.order-form .text p {
+.input-form .text p {
     width:50%;
     margin:0 auto;
 }
 
 @media only screen and (max-width:55em) {
-.order-form .text p {
+.input-form .text p {
     width: 75%;
     margin: 0 auto;
 }
 }
 @media only screen and (max-width:35em) {
-.order-form .text p {
+.input-form .text p {
     width: 95%;
     margin: 0 auto;
 }
 }
 
-.order-form #form_contact {
+.input-form #form_area {
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
 }
+.input-form.sm #form_area {
+    width:400px;
+    margin:0 auto;
+}
 
-.order-form #form_contact .input-container {
+.input-form #form_area .input-container {
     width:49%;
     margin-right:1%;
     position: relative;
     margin-bottom:2.5rem;
 }
 
-.order-form #form_contact .input-container.full {
-    width:100%;
-    margin:0;
+.input-form #form_area .input-container.full {
+    width:100% !important;
+    margin-right:0 !important;
+    margin-left:0 !important;
 }
 
-.order-form #form_contact .input-container:nth-of-type(2n + 0){
+.input-form #form_area .input-container:nth-of-type(2n + 0){
     width:49%;
     margin-left:1%;
     margin-right:0;
 }
 
 @media only screen and (max-width:35em) {
-    .order-form #form_contact .input-container {
+    .input-form #form_area .input-container {
         width: 100%;
         margin: 0;
         margin-bottom:1.5rem;
     }
-    .order-form #form_contact .input-container:nth-of-type(2n + 0) {
+    .input-form #form_area .input-container:nth-of-type(2n + 0) {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
 }
 
-.order-form #form_contact .input-container:before {    
+.input-form #form_area .input-container:before {    
     content:'';
     width:calc(100% - 2px);
     height:calc(100% - 1px);
@@ -2278,9 +2287,10 @@ img.gift-basket {
     pointer-events: none;
 }
 
-.order-form #form_contact input[type="text"],
-.order-form #form_contact input[type="email"],
-.order-form #form_contact textarea {
+.input-form #form_area input[type="text"],
+.input-form #form_area input[type="email"],
+.input-form #form_area input[type="password"],
+.input-form #form_area textarea {
     width:100%;
     border-radius: 0 !important;
     border:none !important;
@@ -2289,25 +2299,31 @@ img.gift-basket {
     transition: 0.3s ease;
 }
 
-.order-form #form_contact input.fail,
-.order-form #form_contact select.fail,
-.order-form #form_contact textarea.fail {
+.input-form #form_area input.fail,
+.input-form #form_area select.fail,
+.input-form #form_area textarea.fail {
    background-color:rgb(255, 208, 208) !important;
    border-radius:0 !important; 
    transition: 0.15s ease;
 }
 
-.order-form #form_contact input.fail::placeholder,
-.order-form #form_contact textarea.fail::placeholder {
+.input-form #form_area input.fail::placeholder,
+.input-form #form_area textarea.fail::placeholder {
     color:#2C211E;
 }
 
-.order-form #form_contact textarea {
+.input-form #form_area .error-msg {
+    font-size:12px;
+    color:#a6381a;
+    position:absolute;
+}
+
+.input-form #form_area textarea {
     min-height:200px;
     padding:1.5rem 1.5rem;
 }
 
-.order-form #form_contact button[type="submit"]{
+.input-form #form_area button[type="submit"]{
     margin:0 auto;
     margin-top:5rem;
     border:none;
@@ -2327,11 +2343,11 @@ img.gift-basket {
 
 }
 
-.order-form #form_contact button[type="submit"]:hover {
+.input-form #form_area button[type="submit"]:hover {
     background-color:#3f302b;
 }
 
-.order-form #form_contact .select {
+.input-form #form_area .select {
     border: 0;
     background-color:#fff;
     border-radius: 0;
@@ -2340,7 +2356,7 @@ img.gift-basket {
     min-height:45px;
 }
 
-.order-form #form_contact .select:after {
+.input-form #form_area .select:after {
     position: absolute;
     content:'^';
     right:2.5rem;
@@ -2348,7 +2364,7 @@ img.gift-basket {
     transform: translateY(-75%) rotate(180deg);
 }
 
-.order-form #form_contact select {
+.input-form #form_area select {
     width: 100%;
     border: none;
     box-shadow: none;
@@ -2360,20 +2376,71 @@ img.gift-basket {
     padding:10px 15px 14px 15px;
 }
 
-.order-form .form-success,
-.order-form .form-fail {
+.input-form #form_area .checkbox {
+    border:0;
+    background-color:transparent;
+    border-radius: 0;
+    position: relative;
+    height:100%;
+    min-height:20px;
+    margin-left:0 !important;
+}
+.input-form #form_area .checkbox:before {
+    content:none;
+}
+.input-form #form_area .checkbox label {
+    display:inline-block;
+    line-height:20px;
+    position:relative;
+    vertical-align:middle;
+}
+.input-form #form_area .checkbox label > span {
+    vertical-align:middle;
+}
+.input-form #form_area .checkbox label:before {
+    content:'';
+    display:inline-block;
+    width:20px;
+    height:20px;
+    border:2px solid #2D211E;
+    vertical-align:middle;
+    margin-right:10px;
+    box-sizing:border-box;
+}
+.input-form #form_area .checkbox input:checked + label:before {
+    content:'\f00c';
+    font-family: 'FontAwesome';
+    color:#fff;
+    background:#2C211E;
+    font-size:12px;
+    line-height:20px;
+    text-align:center;
+}
+.input-form #form_area .checkbox input {
+    position:absolute;
+    width:1px;
+    height:1px;
+    margin:0;
+    border:0;
+    overflow:hidden;
+    clip:rect(1px, 1px, 1px, 1px);
+    clip-path:inset(50%);
+}
+
+.input-form .form-success,
+.input-form .form-fail {
     display: none;
 }
 
-.order-form .recaptcha-wrapper {
+.input-form .recaptcha-wrapper {
     flex: 0 0 100%;
 }
 
-.order-form .recaptcha-wrapper .g-recaptcha > div {
+.input-form .recaptcha-wrapper .g-recaptcha > div {
     margin: 40px auto 0;
 }
 
-.order-form .form-success {
+.input-form .form-success {
     text-align: center;
     margin: 0 auto;
     max-width: 60ch;
@@ -2559,7 +2626,7 @@ img.gift-basket {
 }
 
 .menu-container .menu .heading p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 1.4;
@@ -2585,7 +2652,7 @@ img.gift-basket {
 }
 
 .menu-container .menu .menu-item h4 {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 2.4rem;
     font-weight: 600;
     letter-spacing: 0.171rem;
@@ -2601,7 +2668,7 @@ img.gift-basket {
 }
 
 .menu-container .menu .menu-item div, .menu-container .menu .menu-item p {
-    font-family: 'Lora', serif;
+    font-family: "Lora", "Noto Sans KR", sans-serif;;
     font-size: 1.8rem;
     letter-spacing: 0.088rem;
     line-height: 1.6;
@@ -2624,12 +2691,12 @@ h4,
 h5,
 h6 {
     margin-top: 0;
-    margin-bottom: 2rem;
-    font-weight: 300;
+    margin-bottom: 0;
+    font-weight: 400;
 }
 
 h1 {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
     font-size: 4.0rem;
     font-weight: 900;
     color: #FFF8EB;
