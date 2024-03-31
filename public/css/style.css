@@ -637,7 +637,7 @@ body {
         float: none;
     }
     .content p {
-        font-family: "Lora", "Noto Sans KR", sans-serif;;
+        font-family: "Lora", "Noto Sans KR", sans-serif;
         font-size: 2rem;
         padding:0;
     }
@@ -895,7 +895,7 @@ body {
 }
 
 .carousel-desc p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 2rem;
     color: #FFF8EB;
     padding: 3rem;
@@ -968,7 +968,7 @@ body {
 }
 
 .menu-grid p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.4rem;
     color: #FFF7EA;
     letter-spacing: 0.1rem;
@@ -1373,7 +1373,7 @@ ul.menu-list li a i {
 .social-links li a {
     list-style: none;
     color: #231F1F;
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 2.8rem;
     letter-spacing: 0.2rem;
     margin: 0;
@@ -1491,7 +1491,7 @@ ul.menu-list li a i {
 
 .story-text p {
     color: #FFF8EB;
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.8rem;
     line-height: 2;
 }
@@ -1578,7 +1578,7 @@ p.definition {
 }
 
 .contact p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     letter-spacing: 0.12rem;
     font-size: 1.4rem;
 }
@@ -1595,7 +1595,7 @@ p.definition {
 
 .contact ul {
     list-style: none;
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     letter-spacing: 0.12rem;
     font-size: 1.4rem;
     margin: 0;
@@ -1979,7 +1979,7 @@ nav {
 }
 
 .holidays ul {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     list-style: none;
     text-align: left;
     margin: 0 auto 4rem;
@@ -2009,7 +2009,7 @@ nav {
 .holidays-2 p,
 .cakes-section p,
 .pies-section p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 2;
@@ -2070,7 +2070,7 @@ img.xmas-img-02 {
 
 #cakes ul,
 #pies ul {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     list-style: none;
     text-align: center;
     column-count: 2;
@@ -2166,7 +2166,7 @@ img.gift-basket {
 }
 
 .catering-gift-baskets p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 2;
@@ -2195,7 +2195,7 @@ img.gift-basket {
 }
 
 .input-form .text {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     text-align: center;
     margin-bottom:7.5rem;
 }
@@ -2206,7 +2206,7 @@ img.gift-basket {
     }
 }
 
-.input-form .text h5 {
+.input-form .text h2 {
     font-size:1.8rem;
     font-weight:600;
     letter-spacing: 0.056rem;
@@ -2235,7 +2235,7 @@ img.gift-basket {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
 }
@@ -2626,7 +2626,7 @@ img.gift-basket {
 }
 
 .menu-container .menu .heading p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.6rem;
     letter-spacing: 0.088rem;
     line-height: 1.4;
@@ -2668,7 +2668,7 @@ img.gift-basket {
 }
 
 .menu-container .menu .menu-item div, .menu-container .menu .menu-item p {
-    font-family: "Lora", "Noto Sans KR", sans-serif;;
+    font-family: "Lora", "Noto Sans KR", sans-serif;
     font-size: 1.8rem;
     letter-spacing: 0.088rem;
     line-height: 1.6;

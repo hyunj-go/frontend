@@ -22,7 +22,7 @@ search
 .input-search {position:relative;}
 .input-search input {margin:0;border:2px solid #2D211E;border-radius:0;padding:6px 25px 6px 30px;}
 .input-search .btn-delSch {position:absolute;right:5px;top:50%;transform:translateY(-50%);}
-.input-search .btn-sch {position:absolute;left:8px;top:50%;transform:trnaslateY(-50%);}
+.input-search .btn-sch {position:absolute;left:8px;top:50%;transform:translateY(-50%);}
 .no-result {padding-top:100px;}
 .search-result {padding-top:50px;}
 .search-result .text {font-weight:700;}

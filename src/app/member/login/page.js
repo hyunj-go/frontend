@@ -1,6 +1,6 @@
 'use client'
 import useInput from "@/app/hooks/useInput"
-import { useSate } from "react"
+import { useState } from "react"
 
 const Login = () => {
     const userid = useInput('')
@@ -14,7 +14,7 @@ const Login = () => {
         }
     }
 
-    //const resp = await getch(`${process.env.API_URL}/api/`);
+    //const resp = await fetch(`${process.env.API_URL}/api/`);
     //const aboutus = await resp.json();
     //const story = aboutus.data;
     const userPosts = () => {
@@ -22,10 +22,10 @@ const Login = () => {
             userid: userid.value,
             password: password.value,
         };
-        fetch(`${process.allowedNodeEnvironmentFlags.API_URL}/api/auth/local/register`, {
+        fetch(`${process.env.API_URL}/api/auth/local/register`, {
             method: 'POST',
             headers: {
-                'Conent-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(userData),
         })
