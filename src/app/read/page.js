@@ -9,8 +9,11 @@ export default async function BakeryPage({searchParams}) {
     return(
         <div className='wrapper'>
             <div className='inner'>
-                <SearchInput></SearchInput>
-                <List bakery={bakeries.data}></List>
+                <div className='memu'>
+                    <h2>Our Bakeries</h2>
+                    <SearchInput></SearchInput>
+                    <List bakery={bakeries.data}></List>
+                </div>  
             </div>
         </div>
     )

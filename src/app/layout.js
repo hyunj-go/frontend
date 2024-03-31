@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
               <div className="container">
                 <div className="u-pull-left ticker-text">
                   <div className="logo">
-                    <a className="mob-link" href="/">BAKERY in SEOUL</a>
+                    <a className="mob-link" href="/">BAKERY</a>
                   </div>
                   {/* <SearchInput></SearchInput> */}
                   {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
                   </p>
                   <p>&nbsp;&nbsp;<Link href="/member/login"> login</Link></p>
                   <p>&nbsp;&nbsp;<Link href="/member/join"> join</Link></p>
-                  <Link href="/read" className="btn-search"><BsSearch size={20}/></Link>
+                  {/* <Link href="/read" className="btn-search"><BsSearch size={20}/></Link> */}
                 </div>
                 <div className="u-cf"></div>
               </div>

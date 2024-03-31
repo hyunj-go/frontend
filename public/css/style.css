@@ -577,7 +577,7 @@ body {
 .header .line-2 {
     position: relative;
     width: 5px;
-    height: 300px;
+    height: 22vw;
     padding-bottom: 50px;
     float: left;
     stroke-dasharray: 450;
@@ -927,7 +927,7 @@ body {
     font-weight: 900;
     letter-spacing: 0.2rem;
     text-align: center;
-    padding-top: 5rem;
+    padding: 5rem 0;
 }
 
 .menu h2:after {
@@ -1673,7 +1673,7 @@ nav {
 }
 
 @media only screen and (max-width:350px) {
-    .ticker {padding:0;}
+    .ticker {}
 }
 
 .ticker:before {
@@ -1703,13 +1703,14 @@ nav {
     flex-direction: row;
 }
 .ticker .ticker-text .logo {
-    padding:1rem 0;
+    padding:0;
 }
 .ticker .ticker-text .logo a {
     font-size: 1.4rem;
     position: relative;
     width: 100%;
     text-transform: none;
+    line-height:39px;
 }
 .ticker .ticker-text .menus-ticker,
 .ticker .ticker-text .number-ticker {
@@ -2174,12 +2175,14 @@ img.gift-basket {
 
 .input-form {
     background-color:#FFF7EA;
-    width:95%;
-    max-width:150rem;
+    width:100%;
+    height:calc(100vh - 49px);
     margin:0 auto;
-    padding:15rem 0 5rem 0;
-    /* margin-top:-25rem; */
-    margin-bottom: 4rem;
+    padding:12rem 0 5rem 0;
+    box-sizing:border-box;
+}
+.input-form.lg {
+    height:auto;
 }
 
 @media only screen and (max-width:55em) {
@@ -2240,7 +2243,7 @@ img.gift-basket {
     letter-spacing: 0.088rem;
 }
 .input-form.sm #form_area {
-    width:400px;
+    max-width:400px;
     margin:0 auto;
 }
 
@@ -2267,7 +2270,7 @@ img.gift-basket {
     .input-form #form_area .input-container {
         width: 100%;
         margin: 0;
-        margin-bottom:1.5rem;
+        margin-bottom:2.5rem;
     }
     .input-form #form_area .input-container:nth-of-type(2n + 0) {
         width: 100%;

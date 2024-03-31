@@ -38,13 +38,13 @@ const SearchInput = () => {
     
 
     return (
-        <>
+        <div className="container">
             <div className="input-search">
                 <input type='text' placeholder='Search bakeries' autoFocus autoComplete='off' value={paramsName||''} onChange={(e)=> handleSearchValue(e.target.value)} />
                 {searchParams.get("name") && <TiDelete onClick={cleanSearch} size={20} className="btn-delSch"/>}
                 <BsSearch size={20} className="btn-sch" />
             </div>
-        </>
+        </div>
     )
 }
 

@@ -80,7 +80,7 @@ const Join = () => {
 
     return(
         <div className="wrapper">
-            <div className="input-form">
+            <div className="input-form lg sm">
                 <div className="container">
                     <div className="row">
                         <div className="columns twelve text">
@@ -89,19 +89,19 @@ const Join = () => {
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} id="form_area" name="Join Form">
-                        <div className="input-container">
+                        <div className="input-container full">
                             <input type="text" {...userid}  placeholder="아이디를 입력해주세요"/>   
                             {userid.value==='' && <div className="error-msg">아이디를 입력해주세요.</div>}
                         </div>
-                        <div className="input-container">
+                        <div className="input-container full">
                             <input type="text" {...username} placeholder="이름을 입력해주세요"/>
                             {username.value==='' && <div className="error-msg">이름을 입력해주세요.</div>}
                         </div>
-                        <div className="input-container">
+                        <div className="input-container full">
                             <input type="password" {...password} placeholder="비밀번호를 입력해주세요"/>
                             {!password.value && <div className="error-msg">비밀번호를 입력해주세요.</div>}
                         </div>
-                        <div className="input-container">
+                        <div className="input-container full">
                             <input type="password" value={passwordCheck} onChange={handlePassword} placeholder="비밀번호를 다시 입력해주세요"/>
                             {passwordError && <div className="error-msg">비밀번호가 일치하지 않습니다.</div>}
                         </div>
