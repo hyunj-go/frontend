@@ -9,7 +9,7 @@ export default async function BakeryPage({searchParams}) {
     return(
         <div className='wrapper'>
             <div className='inner'>
-                <div className='memu'>
+                <div className='menu'>
                     <h2>Our Bakeries</h2>
                     <SearchInput></SearchInput>
                     <List bakery={bakeries.data}></List>
