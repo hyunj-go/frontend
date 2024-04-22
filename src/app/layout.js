@@ -88,7 +88,7 @@ export default function RootLayout({ children }) {
                 <div className="three columns">
                   <h6>Contact</h6>
                   <ul>
-                    <li><a href="tel:1234-5678">1234-5678</a></li>
+                    <li><a href="tel:12345678">1234-5678</a></li>
                     <li><a href="mailto:">aaa@gmail.com</a></li>
                   </ul>
                 </div>
@@ -97,6 +97,8 @@ export default function RootLayout({ children }) {
                   <p className="footer-address">address
                     <br /></p>
                   <a href="https://goo.gl/maps/" target="_blank"><i className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a>
+                  <a href="https://goo.gl/maps" target="_blank"><i className="fa fa-map-marker"
+                      aria-hidden="true"></i> Get Directions</a>
                 </div>
                 <div className="three columns">
                   <h6>Hours of Operation</h6>
@@ -109,8 +111,8 @@ export default function RootLayout({ children }) {
                 <div className="three columns">
                   <h6>Follow</h6>
                   <ul>
-                    <li><a href="http://www.facebook.com/pinchmans" target="_blank"><i className="fab fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
-                    <li><a href="http://www.instagram.com/pinchmans" target="_blank"><i className="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    <li><a href="http://www.facebook.com" target="_blank"><i className="fab fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                    <li><a href="http://www.instagram.com" target="_blank"><i className="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
                   </ul>
                 </div>
               </div>
