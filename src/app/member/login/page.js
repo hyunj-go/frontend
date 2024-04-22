@@ -1,4 +1,5 @@
 'use client'
+import { signIn } from 'next-auth/react';
 import useInput from "@/app/hooks/useInput"
 import { useState } from "react"
 
@@ -6,37 +7,24 @@ const Login = () => {
     const userid = useInput('')
     const password = useInput('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
         if(userid.value && password.value) {
-            userPosts();
+            // signIn 함수를 사용하여 자체 로그인 요청을 보냅니다.
+            const result = await signIn('credentials', {
+            userid,
+            password,
+            // 필요한 경우 다른 필드도 추가할 수 있습니다.
+            });
         }
-    }
-
-    //const resp = await fetch(`${process.env.API_URL}/api/`);
-    //const aboutus = await resp.json();
-    //const story = aboutus.data;
-    const userPosts = () => {
-        const userData = {
-            userid: userid.value,
-            password: password.value,
-        };
-        fetch(`${process.env.API_URL}/api/auth/local/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Registration successful', data);
-        })
-        .catch(error => {
-            console.error('Error during registration', error);
-        });
-    }
+    
+        // 로그인이 성공하면 다음 페이지로 이동할 수 있습니다.
+        if (result.error) {
+          // 로그인 실패 시 오류 메시지를 처리할 수 있습니다.
+          console.error(result.error);
+        }
+      };
 
     return(
         <div className="wrapper">

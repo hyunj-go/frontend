@@ -2,7 +2,7 @@ import './globals.css';
 import 'public/css/style.css';
 import 'public/css/content.css';
 import Link from 'next/link';
-// import SearchInput from './component/SearchInput';
+import AuthSession from "@/app/component/AuthSession";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
 import { BsSearch } from "react-icons/bs"
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
+      <AuthSession>
         <div className="site-container">
           
           <nav>
@@ -30,7 +31,6 @@ export default function RootLayout({ children }) {
                   <div className="logo">
                     <a className="mob-link" href="/">BAKERY</a>
                   </div>
-                  {/* <SearchInput></SearchInput> */}
                   {/* <p className="number-ticker"><a href="tel:7054707624"><i className="fa fa-phone" aria-hidden="true"></i>
                       735-670</a></p>
                   <p className="desktop-address"><a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i
@@ -88,16 +88,15 @@ export default function RootLayout({ children }) {
                 <div className="three columns">
                   <h6>Contact</h6>
                   <ul>
-                    <li><a href="tel:7054707624">705–470–PNCH</a></li>
+                    <li><a href="tel:1234-5678">1234-5678</a></li>
                     <li><a href="mailto:">aaa@gmail.com</a></li>
                   </ul>
                 </div>
                 <div className="three columns">
                   <h6>Address</h6>
-                  <p className="footer-address">2037 Long Lake Rd, Block B, Unit 8B
-                    <br />Sudbury, ON P3E 6J9</p>
-                  <a href="https://goo.gl/maps/iFvNnzzMnow" target="_blank"><i className="fa fa-map-marker"
-                      aria-hidden="true"></i> Get Directions</a>
+                  <p className="footer-address">address
+                    <br /></p>
+                  <a href="https://goo.gl/maps/" target="_blank"><i className="fa fa-map-marker" aria-hidden="true"></i> Get Directions</a>
                 </div>
                 <div className="three columns">
                   <h6>Hours of Operation</h6>
@@ -125,6 +124,7 @@ export default function RootLayout({ children }) {
             </div>
           </footer>
         </div>
+      </AuthSession>
       </body>
     </html>
   )
