@@ -2,7 +2,7 @@ import './globals.css';
 import 'public/css/style.css';
 import 'public/css/content.css';
 import Link from 'next/link';
-import AuthSession from "@/app/component/AuthSession";
+import AuthSession from "./component/AuthSession";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";
 import { BsSearch } from "react-icons/bs"

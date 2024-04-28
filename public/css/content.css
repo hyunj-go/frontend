@@ -9,7 +9,7 @@ review
 .review-area {padding:20px;}
 .review-area .review-input textarea{width:100%;}
 .review-area .review-output li {padding:20px 0;}
-.review-area .review-output li + li {border-top:1px solid #ddd;}
+.review-area .review-output li + li {border-top:1px solid var(--btn-border-color);}
 .review-area .review-output li input{width:100%;}
 .review-area .review-input .btn-wrap input,
 .review-area .review-output .btn-wrap button{margin-bottom:0;}
@@ -20,7 +20,7 @@ search
 */
 .btn-search {display:block;padding:2px 4px;}
 .input-search {display:inline-block;position:relative;}
-.input-search input {margin:0;border:2px solid #2D211E;border-radius:0;padding:6px 25px 6px 30px;}
+.input-search input {margin:0;border:2px solid var(--background-color);border-radius:0;padding:6px 25px 6px 30px;}
 .input-search .btn-delSch {position:absolute;right:5px;top:50%;transform:translateY(-50%);}
 .input-search .btn-sch {position:absolute;left:8px;top:50%;transform:translateY(-50%);}
 .no-result {padding-top:100px;}

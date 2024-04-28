@@ -1,0 +1,21 @@
+:root {
+    color-scheme : dark;
+    --main-color: #352824;
+    --background-color: #2C211E;
+    --border-color: #231F1F;
+    --sub-color: #FFF8EB;
+    --caution-color: #ff0;
+    --error-color: #a6381a;
+    --bk-color: #000;
+    --wh-color: #fff;
+    --btn-color:#666;
+    --btn-border-color:#bbb;
+    --primary-color:#33C3F0;
+}
+.light-mode {
+    color-scheme : light;
+    --main-color: #352824;
+    --background-color: #2C211E;
+    --border-color: #231F1F;
+    --sub-color: #FFF8EB;
+}
