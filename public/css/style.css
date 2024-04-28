@@ -1716,7 +1716,7 @@ nav {
 }
 .ticker .ticker-text .menus-ticker,
 .ticker .ticker-text .number-ticker {
-    margin-right:2rem;
+    margin-left:2rem;
 }
 
 .ticker .ticker-text .mobile-address {

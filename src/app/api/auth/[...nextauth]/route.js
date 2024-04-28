@@ -29,7 +29,7 @@ const handler = NextAuth({
                         }),
                     });
                     const user = await res.json();
-                    console.log('user', user);
+                    console.log('user!!', user);
 
                     if (user) {
                         return user;
@@ -50,19 +50,24 @@ const handler = NextAuth({
     //     jwt: true,
     //   },
     callbacks: {
-        jwt: async (token, user) => {
-            if (user){
+        async jwt({ token, user }) { // 로그인 시, 사용자 정보를 토큰에 추가
+          if (user) {
             token.jwt = user.jwt;
-            token.username = user.username;
-            }
-            return Promise.resolve(token);
+            token.username = user.user.username;
+            token.email = user.user.email;
+            console.log('토큰', token);
+          }
+          return token;
         },
-        session: async (session, token) => {
-            session.jwt = token.jwt;
-            session.username = token.username;
-            return Promise.resolve(session);
+        async session({ session, token }) { // JWT 콜백에서 추가된 사용자 정보를 세션에 반영
+          session.jwt = token.jwt;
+          session.user.username = token.username;
+          session.user.email = token.email;
+          
+          console.log('세션', session);
+          return session;
         },
-    },
+      },
 
     pages: {
         signIn: "/member/login",
