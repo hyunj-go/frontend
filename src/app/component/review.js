@@ -1,6 +1,8 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
-import { Rating } from 'react-simple-star-rating'
+import { Rating } from 'react-simple-star-rating';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 // // Parses the JSON returned by a network request
 // const parseJSON = resp => (resp.json ? resp.json() : resp);
@@ -22,6 +24,8 @@ export default function Review(props){
     const [reviews, setReviews] = useState([]);
     const [reviewCreate, setReviewCreate] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState(null);
+    const { data: session } = useSession();
+    const router = useRouter();
 
     //처음 가져온 해당 게시물의 댓글들을 state에 넣는다.
     useEffect(() => {
@@ -195,7 +199,19 @@ export default function Review(props){
                         <input type="submit" value="create"/>
                         <button onClick={() => {setReviewCreate(false);}}>Cancel</button>
                     </div>
-                </form> : <button className="w-full" onClick={()=>{ setReviewCreate(true);setCreatedData( prev => ({...prev, content: '',}) ); }}>리뷰작성</button>
+                </form> 
+                : 
+                <button className="w-full" onClick={()=>{ 
+                    if(session){
+                        setReviewCreate(true);
+                    }else{
+                        if(window.confirm("로그인이 필요합니다. 로그인 패이지로 이동하시겠습니까?")) {
+                            //로그인 페이지로 이동
+                            router.push('/member/login')
+                        }
+                    }
+                    setCreatedData( prev => ({...prev, content: '',}) ); 
+                }}>리뷰작성</button>
             }
             <ul className="review-output">
                 {
