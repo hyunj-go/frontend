@@ -220,7 +220,7 @@ export default function Review(props){
                         return(
                         <li key={review.id}>
                             <Rating initialValue={editingReviewId === review.id ? modifiedData.rating : review.attributes.rating} onClick={reviewChange} allowFraction="true" size="24" readonly={editingReviewId === review.id ? false : true}/>
-                           <div>{createdData.username}</div>
+                           <div>{review.attributes.username}</div>
                            <div>{(review.attributes.createdAt).split('T')[0]}</div>
                             
                             <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange} readOnly={editingReviewId === review.id ? false : true}/></div>

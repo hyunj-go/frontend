@@ -45,26 +45,6 @@ export default function Nav() {
                 <div className="u-cf"></div>
                 </div>
             </div>
-            <div className="mobile-nav">
-                <ul className="mobile-links">
-                <li><a className="mob-link" href="/story">story</a></li>
-                <li><a className="mob-link" href="/bakery">bakery</a></li>
-                <li><a className="mob-link" href="/contact">Contact</a></li>
-                </ul>
-                {/* <ul>
-                <li>
-                    <div className="logo">
-                    <a className="mob-link" href="/">bakery <br/>in Seoul</a>
-                    </div>
-                </li>
-                </ul> */}
-                <div className="container">
-                <button className="hamburger hamburger--squeeze u-pull-right" type="button"> <span className="hamburger-box">
-                    <span className="hamburger-inner"></span> </span>
-                </button>
-                </div>
-                <div className="u-cf"></div>
-            </div>
         </nav>
     )
 }

@@ -930,6 +930,7 @@ body {
     letter-spacing: 0.2rem;
     text-align: center;
     padding: 5rem 0;
+    color:var(--main-color);
 }
 
 .menu h2:after {
@@ -937,12 +938,13 @@ body {
     display: block;
     background: var(--sub-color);
     width: 30%;
-    left: 24%;
-    height: 180px;
+    left: 50%;
+    height: 30px;
     margin: 0 auto;
     position: absolute;
+    transform:translateX(-50%);
     z-index: -1;
-    margin-top: -50px;
+    margin-top: -37px;
 }
 
 .menu .line-1 {
@@ -1135,9 +1137,7 @@ ul.menu-list li a i {
         top: -100px;
     }
     .menu h2:after {
-        margin-top: -15px;
-        width: 50%;
-        left: 15%;
+        width: 280px;
     }
 
     ul.menu-list li {
@@ -2176,7 +2176,7 @@ img.gift-basket {
 }
 
 .input-form {
-    background-color:var(--sub-color);
+    background-color:var(--main-color);
     width:100%;
     height:calc(100vh - 49px);
     margin:0 auto;
@@ -2189,7 +2189,7 @@ img.gift-basket {
 
 @media only screen and (max-width:55em) {
 .input-form {
-    background-color: var(--sub-color);
+    background-color: var(--main-color);
     width: 100%;
     max-width: 150rem;
     margin: 0 auto;
@@ -2401,6 +2401,7 @@ img.gift-basket {
 }
 .input-form #form_area .checkbox label > span {
     vertical-align:middle;
+    color:var(--sub-color);
 }
 .input-form #form_area .checkbox label:before {
     content:'';

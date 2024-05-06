@@ -32,8 +32,10 @@ const BakeryIdPage = async(props) => {
 
     return(
         <div className="wrapper">  
-            <h2>{bakery.data.attributes.name}</h2>
-            <p>{bakery.data.attributes.description}</p>
+            <div className="title-area">
+                <h2>{bakery.data.attributes.name}</h2>
+                <p>{bakery.data.attributes.description}</p>
+            </div>
             {bakery.data.attributes.image.data.map((bakeryImg)=>{
             return <li key={bakeryImg.id}><img src={bakeryImg.attributes.url} alt={bakery.data.attributes.name}/></li>
             })}

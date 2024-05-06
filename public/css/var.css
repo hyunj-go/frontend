@@ -14,8 +14,8 @@
 }
 .light-mode {
     color-scheme : light;
-    --main-color: #352824;
-    --background-color: #2C211E;
+    --main-color: #FFF8EB;
+    --background-color: #e8ddc8;
     --border-color: #231F1F;
-    --sub-color: #FFF8EB;
+    --sub-color: #2C211E;
 }

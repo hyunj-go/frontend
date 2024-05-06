@@ -1,16 +1,21 @@
 /*
 common
 */
+body{background-color:var(--main-color);color:var(--sub-color)}
 .wrapper {padding-top:49px;}
-
+/*
+detail
+*/
+.title-area {padding: 20px 20px 0;}
 /*
 review 
 */
 .review-area {padding:20px;}
-.review-area .review-input textarea{width:100%;}
+.review-area .review-input textarea{color:var(--main-color);width:100%;}
 .review-area .review-output li {padding:20px 0;}
 .review-area .review-output li + li {border-top:1px solid var(--btn-border-color);}
 .review-area .review-output li input{width:100%;}
+.review-area .review-output li input[readonly]{padding:0;background-color:var(--main-color);}
 .review-area .review-input .btn-wrap input,
 .review-area .review-output .btn-wrap button{margin-bottom:0;}
 .review-area .review-input .btn-wrap input + button,
@@ -20,7 +25,7 @@ search
 */
 .btn-search {display:block;padding:2px 4px;}
 .input-search {display:inline-block;position:relative;}
-.input-search input {margin:0;border:2px solid var(--background-color);border-radius:0;padding:6px 25px 6px 30px;}
+.input-search input {color:var(--sub-color);margin:0;border:2px solid var(--background-color);border-radius:0;padding:6px 25px 6px 30px;}
 .input-search .btn-delSch {position:absolute;right:5px;top:50%;transform:translateY(-50%);}
 .input-search .btn-sch {position:absolute;left:8px;top:50%;transform:translateY(-50%);}
 .no-result {padding-top:100px;}
