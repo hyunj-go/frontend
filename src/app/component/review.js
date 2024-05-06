@@ -40,6 +40,7 @@ export default function Review(props){
     }, [reviewCreate]);
     
     const [createdData, setCreatedData] = useState({
+        username:session?session.user.username:'',
         content: '',
         rating: '',
         bakery: props.param,
@@ -205,7 +206,7 @@ export default function Review(props){
                     if(session){
                         setReviewCreate(true);
                     }else{
-                        if(window.confirm("로그인이 필요합니다. 로그인 패이지로 이동하시겠습니까?")) {
+                        if(window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")) {
                             //로그인 페이지로 이동
                             router.push('/member/login')
                         }
@@ -219,7 +220,8 @@ export default function Review(props){
                         return(
                         <li key={review.id}>
                             <Rating initialValue={editingReviewId === review.id ? modifiedData.rating : review.attributes.rating} onClick={reviewChange} allowFraction="true" size="24" readonly={editingReviewId === review.id ? false : true}/>
-                            <div>{(review.attributes.createdAt).split('T')[0]}</div>
+                           <div>{createdData.username}</div>
+                           <div>{(review.attributes.createdAt).split('T')[0]}</div>
                             
                             <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange} readOnly={editingReviewId === review.id ? false : true}/></div>
                             <div className="btn-wrap">

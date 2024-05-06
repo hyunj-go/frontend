@@ -3,7 +3,7 @@ import 'public/css/style.css';
 import 'public/css/content.css';
 import Link from 'next/link';
 import Nav from './component/Nav';
-import Footer from './component/footer';
+import Nav from './component/Footer';
 import AuthSession from "./component/AuthSession";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBreadSlice } from "@fortawesome/free-solid-svg-icons";

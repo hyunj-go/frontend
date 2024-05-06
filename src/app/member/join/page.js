@@ -89,10 +89,10 @@ const Join = () => {
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} id="form_area" name="Join Form">
-                        <div className="input-container full">
+                        {/* <div className="input-container full">
                             <input type="text" {...userid}  placeholder="아이디를 입력해주세요"/>   
                             {userid.value==='' && <div className="error-msg">아이디를 입력해주세요.</div>}
-                        </div>
+                        </div> */}
                         <div className="input-container full">
                             <input type="text" {...username} placeholder="이름을 입력해주세요"/>
                             {username.value==='' && <div className="error-msg">이름을 입력해주세요.</div>}
