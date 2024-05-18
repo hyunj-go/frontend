@@ -4,22 +4,7 @@ import { Rating } from 'react-simple-star-rating';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-// // Parses the JSON returned by a network request
-// const parseJSON = resp => (resp.json ? resp.json() : resp);
-// // Checks if a network request came back fine, and throws an error if not
-// const checkStatus = resp => {
-//     if (resp.status >= 200 && resp.status < 300) {
-//     return resp;
-//     }
-//     return parseJSON(resp).then(resp => {
-//     throw resp;
-//     });
-// };
-const headers = {
-    'Content-Type': 'application/json',
-};
-
-export default function Review(props){
+export default function Review({param}){//const { param } = props;
     const reviewInput = useRef(null);
     const [reviews, setReviews] = useState([]);
     const [reviewCreate, setReviewCreate] = useState(false);
@@ -27,9 +12,25 @@ export default function Review(props){
     const { data: session } = useSession();
     const router = useRouter();
 
+    const fetchReviews = async (bakeryId) => {
+        try {
+            const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?filters[bakery][id][$eq]=${bakeryId}`);
+            const jsonResponse  = await resp.json();
+            const review = jsonResponse.data;
+            return review
+        }catch(error){
+            console.log(error.stack);
+            return []
+        }
+    }
+    const loadReviews = async () => {
+        const fetchedReviews = await fetchReviews(param);
+        setReviews(fetchedReviews);
+    };
+
     //처음 가져온 해당 게시물의 댓글들을 state에 넣는다.
     useEffect(() => {
-        setReviews(props.review.data);
+        loadReviews();
     }, []);
 
     // 리뷰작성 클릭시 포커스
@@ -40,15 +41,30 @@ export default function Review(props){
     }, [reviewCreate]);
     
     const [createdData, setCreatedData] = useState({
-        username:session?session.user.username:'',
+        username:'',
+        email:'',
         content: '',
-        rating: '',
-        bakery: props.param,
+        rating: 0,
+        bakery: param,
     });
+    
+    //세션 불러오면 유저정보 저장
+    useEffect(() => {
+        if (session) {
+            setCreatedData(prev => ({
+                ...prev,
+                username: session.user.username,
+                email: session.user.email,
+            }));
+        }
+    }, [session]);
+    
     const [modifiedData, setModifiedData] = useState({
+        username:'',
+        email:'',
         content: '',
-        rating: '',
-        bakery: props.param,
+        rating: 0,
+        bakery: param,
     });
 
     // const handleChange = function({ target: { name, value } }) { //event.target 안에 {event.target.name, event.target.value} 직접 구조분해할당
@@ -90,24 +106,44 @@ export default function Review(props){
 
     //댓글 작성
     const getPosts = async ()=> {
+        if(createdData.content!==''&&createdData.rating!==0){
+            try {
+                const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, {
+                    method:'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${session?.jwt}`
+                    },
+                    body: JSON.stringify({ data: createdData })
+                });
 
-        try {
-            const options = {
-                method:'POST',
-                headers,
-                body: JSON.stringify({ data: createdData })
+                if (!reviewsData.ok) {  // 서버 응답이 ok가 아닌 경우
+                    throw new Error(`Server error: ${reviewsData.statusText}`);
+                }
+
+                setReviewCreate(false);
+                setCreatedData( prev => ({...prev, content: '', rating: 0}) ); 
+
+                alert('리뷰가 등록 되었습니다.');
+                loadReviews();
+                // const updatedReviews = await reviewsData.json();
+                // return updatedReviews;
+            } catch(error){
+                console.log(error.stack);
+                return{}
             }
-            const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, options);
-            const updatedReviews = await reviewsData.json();
-            return updatedReviews;
-        } catch{}
+        }else{
+            alert('리뷰와 별점을 작성해주세요.')
+        }
     }
 
     //댓글 삭제
     const delReview = (id) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${id}`, {
             method:'DELETE',
-            headers,
+            headers: {
+                'Authorization': `Bearer ${session?.jwt}`
+            },
             body: null
         })
         .then((res) => res.json())
@@ -123,23 +159,10 @@ export default function Review(props){
     const editReview = (id) => {
         setEditingReviewId(id);
         
-
         //클릭한 리뷰 내용 세팅
-        // for(let i = 0; i<reviews.length; i++){
-        //     if(reviews[i].id == id){
-        //         const { content, rating } = reviews[i].attributes;
-        //         const extractedProperties = { content, rating };
-
-        //         setModifiedData(prev => ({
-        //                 ...prev,
-        //                 ...extractedProperties,
-        //             })
-        //         );
-        //     }
-        // }
         const thisReview = reviews.filter(data => data.id == id); console.log(thisReview);
-        const { content, rating } = thisReview[0].attributes;
-        const extractedProperties = { content, rating };
+        const { content, rating, username, email } = thisReview[0].attributes;
+        const extractedProperties = { content, rating, username, email };
         setModifiedData(prev => ({
                 ...prev,
                 ...extractedProperties,
@@ -150,20 +173,23 @@ export default function Review(props){
     const updateReview = (id) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${id}`, {
             method:'PUT',
-            headers,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${session?.jwt}`
+            },
             body: JSON.stringify({ data: modifiedData })
         })
         .then((res) => res.json())
             .then((result) => {
                 alert(`review ${id} modified successfully`);  
                 const copyReviews = JSON.parse(JSON.stringify(reviews));
-                // copyReviews = props.review.data;
                 let thisCopyReviews = copyReviews.filter(data => data.id == id);
                 const { content, rating } = result.data.attributes;
                 thisCopyReviews[0].attributes.content = content;
                 thisCopyReviews[0].attributes.rating = rating;
                 console.log(copyReviews);console.log(thisCopyReviews);
                 setReviews(copyReviews);console.log(reviews)
+                // loadReviews(); 로 하면 느림
                 setEditingReviewId(null);
                 console.log(editingReviewId);
         })
@@ -176,7 +202,7 @@ export default function Review(props){
         // setModifiedData({
         //     content: '',
         //     rating: '',
-        //     bakery: props.param,
+        //     bakery: param,
         // })
         console.log(modifiedData);
         console.log(reviews);
@@ -187,7 +213,7 @@ export default function Review(props){
             <h3>REVIEWS <span>({reviews.length})</span></h3> 
             {
                 reviewCreate?
-                <form onSubmit={getPosts} className="review-input">
+                <form onSubmit={(e)=> { e.preventDefault(); getPosts();}} className="review-input">
                     <Rating
                         onClick={handleChange}
                         allowFraction="true"
@@ -205,13 +231,13 @@ export default function Review(props){
                 <button className="w-full" onClick={()=>{ 
                     if(session){
                         setReviewCreate(true);
+                        setCreatedData( prev => ({...prev, content: '', rating: 0}) ); 
                     }else{
                         if(window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")) {
                             //로그인 페이지로 이동
                             router.push('/member/login')
                         }
                     }
-                    setCreatedData( prev => ({...prev, content: '',}) ); 
                 }}>리뷰작성</button>
             }
             <ul className="review-output">
@@ -224,19 +250,22 @@ export default function Review(props){
                            <div>{(review.attributes.createdAt).split('T')[0]}</div>
                             
                             <div><input type="text" name="content" value={editingReviewId === review.id ? modifiedData.content : review.attributes.content} onChange={reviewChange} readOnly={editingReviewId === review.id ? false : true}/></div>
-                            <div className="btn-wrap">
-                                {
-                                    editingReviewId === review.id ? (
-                                        <>
-                                            <button onClick={() => updateReview(review.id)}>Update</button>
-                                            <button onClick={() => cancelUpdateReview()}>Cancel</button>
-                                        </>
-                                    ) : (
-                                        <button onClick={() => editReview(review.id)}>Edit</button>
-                                    )
-                                }
-                                <button onClick={()=>{ delReview(review.id) }}>delete</button>
-                            </div>
+                            {
+                                session && session.user.email==review.attributes.email ?
+                                <div className="btn-wrap">
+                                    {
+                                        editingReviewId === review.id ? (
+                                            <>
+                                                <button onClick={() => updateReview(review.id)}>Update</button>
+                                                <button onClick={() => cancelUpdateReview()}>Cancel</button>
+                                            </>
+                                        ) : (
+                                            <button onClick={() => editReview(review.id)}>Edit</button>
+                                        )
+                                    }
+                                    <button onClick={()=>{ delReview(review.id) }}>delete</button>
+                                </div>:''
+                            }
                         </li>
                         )
                     })
