@@ -4,7 +4,6 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 const Join = () => {  
-    const userid = useInput('')
     const username = useInput('')
     const password = useInput('')
     const email = useInput('')
@@ -32,7 +31,6 @@ const Join = () => {
             setTermError(true)
             return 0;
         }
-        console.log(userid.value, password.value,)
 
         if(!passwordError && !termError && userid.value && password.value && email.value && username.value) {
             userPosts();
@@ -57,7 +55,6 @@ const Join = () => {
     // const story = aboutus.data;
     const userPosts = () => {
         const userData = {
-            userid: userid.value,
             username: username.value,
             email: email.value,
             password: password.value,
@@ -72,6 +69,7 @@ const Join = () => {
         .then(response => response.json())
         .then(data => {
             console.log('Registration successful', data);
+            router.push('/member/login');
         })
         .catch(error => {
             console.error('Error during registration', error);
