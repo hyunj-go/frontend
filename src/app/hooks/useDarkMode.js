@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 
 const useDarkMode = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    //다크모드로 시작
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // 클라이언트 사이드에서만 실행
     const savedMode = localStorage.getItem('darkMode');
-    return savedMode ? JSON.parse(savedMode) : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+    if (savedMode) {
+      setIsDarkMode(JSON.parse(savedMode));
+    } else {
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkMode(prefersDarkMode);
+    }
+  }, []);
 
   //다크모드,라이트모드 전환
   useEffect(() => {

@@ -5,7 +5,7 @@ import List from './component/List';
 
 const fetchBakeries = async () => {
   try {
-      const resp = await fetch(`${process.env.API_URL}/api/bakeries?populate=*`, {//&sort=createdAt:desc&pagination[page]=1&pagination[pageSize]=4
+      const resp = await fetch(`${process.env.API_URL}/api/bakeries?populate=*&sort=createdAt:desc&pagination[page]=1&pagination[pageSize]=4`, {
           cache: "no-store",
       });
       const bakeries = await resp.json(); 
