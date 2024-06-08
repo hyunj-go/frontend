@@ -1,3 +1,4 @@
+//사용x
 'use client';
 import { useEffect, useState } from 'react'
 import { useParams, useRouter, useSearchParams, usePathname } from 'next/navigation';

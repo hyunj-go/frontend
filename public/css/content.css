@@ -12,11 +12,12 @@ review
 */
 .review-area {padding:20px;}
 .review-area > h3 {margin-bottom:20px;}
-.review-area .review-input textarea{color:var(--main-color);width:100%;}
+.review-area > h3 > .fa-star {color:#ffbc0b;}
+.review-area .review-input textarea{width:100%;}
 .review-area .review-output li {padding:20px 0;}
 .review-area .review-output li + li {border-top:1px solid var(--btn-border-color);}
 .review-area .review-output li input{width:100%;margin-bottom:0;}
-.review-area .review-output li input[readonly]{padding:0;color:var(--sub-color);;background-color:var(--main-color);}
+.review-area .review-output li input[readonly]{padding:0;color:var(--sub-color);background-color:var(--main-color);}
 .review-area .review-output .btn-wrap{margin-top:15px;}
 .review-area .review-input .btn-wrap input,
 .review-area .review-output .btn-wrap button{margin-bottom:0;}
@@ -34,3 +35,12 @@ search
 .no-result {padding-top:100px;}
 .search-result {padding-top:50px;}
 .search-result .text {font-weight:700;}
+/* 
+dark mode
+*/
+.btn-theme {padding:0 10px;margin:0 0 0 10px;border:0;font-size:14px;}
+/* 
+main list
+*/
+.main-list .menu-grid {top:0;}
+.main-list .main-list-btn {padding:40px 0;margin-bottom:50px;text-align:center;}

@@ -187,7 +187,7 @@ input,
 optgroup,
 select,
 textarea {
-    color: inherit;
+    color: var(--input-color);
     font: inherit;
     margin: 0
 }
@@ -222,7 +222,6 @@ input::-moz-focus-inner {
 
 input {
     line-height: normal;
-    color:var(--main-color);
 }
 
 input[type=checkbox],
@@ -450,7 +449,6 @@ body {
     text-align: center;
     height: 100vh;
     border: none;
-    border-bottom: 20rem solid var(--main-color);
     background-color:var(--main-color);
 }
 
@@ -469,6 +467,10 @@ body {
     left: 0;
     background: var(--background-color);
     opacity: .5;
+}
+.bg-container > img {
+    height:100%;
+    object-fit:cover;
 }
 
 .header-content {
@@ -979,6 +981,9 @@ body {
     color: var(--sub-color);
     letter-spacing: 0.1rem;
     padding: 1rem 0;
+}
+.menu-grid .container .row a:before {
+    bottom:40px;
 }
 
 .specialty-block {

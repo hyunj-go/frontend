@@ -1,8 +1,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import mainImg from '/public/images/main_visual_1920.jpg'
+import List from './component/List';
 
-export default function Home() {
+const fetchBakeries = async () => {
+  try {
+      const resp = await fetch(`${process.env.API_URL}/api/bakeries?populate=*&sort=createdAt:desc&pagination[page]=1&pagination[pageSize]=4`, {
+          cache: "no-store",
+      });
+      const bakeries = await resp.json(); 
+      return bakeries
+  }catch(error){
+      console.log(error.stack);
+      return {}
+  }
+}
+
+const Home = async() => {
+  const bakeries = await fetchBakeries(); 
+
   return (
   <>
     <div className="header">
@@ -29,13 +45,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
-        <h2>
-          <Link href="/read">more Bakery</Link>
-        </h2>
-
+      </div>
+    </div>
+    <div className="main-list">
+      <List bakery={bakeries.data}></List>
+      <div className="main-list-btn">
+        <Link href="/read">View More Bakeries</Link>
       </div>
     </div>
   </>
   )
 }
+
+export default Home;

@@ -1,9 +1,16 @@
 'use client'
 import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
+import useDarkMode from "../hooks/useDarkMode";
 
 export default function Nav() {
     const { data: session } = useSession();
+
+    const [isDarkMode, setIsDarkMode] = useDarkMode();
+
+    const toggleDarkMode = () => {
+      setIsDarkMode(!isDarkMode);
+    };
 
     return(
         <nav>
@@ -41,6 +48,10 @@ export default function Nav() {
                     </Link>
                     </p>
                     {/* <Link href="/read" className="btn-search"><BsSearch size={20}/></Link> */}
+                    <button className="btn-theme" onClick={toggleDarkMode}>
+                        {isDarkMode ? <i className="fa-solid fa-sun"></i>
+                        : <i className="fa-solid fa-moon"></i>}
+                    </button>
                 </div>
                 <div className="u-cf"></div>
                 </div>

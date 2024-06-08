@@ -9,6 +9,7 @@ export default function Review({param}){//const { param } = props;
     const [reviews, setReviews] = useState([]);
     const [reviewCreate, setReviewCreate] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState(null);
+    const [rateTotal, setRateTotal] = useState(0);
     const { data: session } = useSession();
     const router = useRouter();
 
@@ -32,6 +33,10 @@ export default function Review({param}){//const { param } = props;
     useEffect(() => {
         loadReviews();
     }, []);
+
+    useEffect(() => {
+        getRateTotal();
+    }, [reviews]);
 
     // 리뷰작성 클릭시 포커스
     useEffect(() => {
@@ -208,9 +213,23 @@ export default function Review({param}){//const { param } = props;
         console.log(reviews);
     }
 
+    //리뷰 평균 구하기
+    const getRateTotal = () => {
+        const reviewLen = reviews.length;
+        if(reviewLen > 0){
+            let total = 0;
+            for(const review of reviews){
+                total = total + review.attributes.rating
+                console.log(total);
+            }
+            const avg = total/reviewLen;
+            setRateTotal(avg.toFixed(1));console.log(rateTotal);
+        }
+    }
+
     return (
         <div className="review-area">
-            <h3>REVIEWS <span>({reviews.length})</span></h3> 
+            <h3>REVIEWS<span>({reviews.length})</span> <i className="fa-solid fa-star"></i>{rateTotal&&rateTotal}</h3> 
             {
                 reviewCreate?
                 <form onSubmit={(e)=> { e.preventDefault(); getPosts();}} className="review-input">
