@@ -111,31 +111,37 @@ export default function Review({param}){//const { param } = props;
 
     //댓글 작성
     const getPosts = async ()=> {
+        const existReview = reviews.filter(data => data.attributes.email == session.user.email)
         if(createdData.content!==''&&createdData.rating!==0){
-            try {
-                const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, {
-                    method:'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${session?.jwt}`
-                    },
-                    body: JSON.stringify({ data: createdData })
-                });
-
-                if (!reviewsData.ok) {  // 서버 응답이 ok가 아닌 경우
-                    throw new Error(`Server error: ${reviewsData.statusText}`);
+            if(existReview.length == 0){
+                try {
+                    const reviewsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews`, {
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${session?.jwt}`
+                        },
+                        body: JSON.stringify({ data: createdData })
+                    });
+    
+                    if (!reviewsData.ok) {  // 서버 응답이 ok가 아닌 경우
+                        throw new Error(`Server error: ${reviewsData.statusText}`);
+                    }
+    
+                    setReviewCreate(false);
+                    setCreatedData( prev => ({...prev, content: '', rating: 0}) ); 
+    
+                    alert('리뷰가 등록 되었습니다.');
+                    loadReviews();
+                    // const updatedReviews = await reviewsData.json();
+                    // return updatedReviews;
+                } catch(error){
+                    console.log(error.stack);
+                    return{}
                 }
-
+            }else{
                 setReviewCreate(false);
-                setCreatedData( prev => ({...prev, content: '', rating: 0}) ); 
-
-                alert('리뷰가 등록 되었습니다.');
-                loadReviews();
-                // const updatedReviews = await reviewsData.json();
-                // return updatedReviews;
-            } catch(error){
-                console.log(error.stack);
-                return{}
+                alert('이미 작성한 리뷰가 존재합니다.');
             }
         }else{
             alert('리뷰와 별점을 작성해주세요.')
