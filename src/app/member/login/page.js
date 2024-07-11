@@ -6,6 +6,10 @@ import { useState } from "react"
 const Login = () => {
     const email = useInput('')
     const password = useInput('')
+    const [touched, setTouched] = useState({
+        email: false,
+        password: false
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +27,14 @@ const Login = () => {
     
       };
 
+    const handleBlur = (e) => {
+        const { id } = e.target;
+        setTouched(
+            ...touched,
+            [id] : false
+        )
+    }
+
     return(
         <div className="wrapper">
             <div className="input-form sm">
@@ -35,12 +47,12 @@ const Login = () => {
                     </div>
                     <form onSubmit={handleSubmit} id="form_area" name="Login Form">
                         <div className="input-container full">
-                            <input type="text" id="email" name="email" {...email} placeholder="이메일을 입력해주세요"/>
-                            {email.value==='' && <div className="error-msg">이메일을 입력해주세요.</div>}
+                            <input type="text" id="email" name="email" {...email} placeholder="이메일을 입력해주세요" onblur={handleBlur}/>
+                            {touched.email && email.value==='' && <div className="error-msg">이메일을 입력해주세요.</div>}
                         </div>
                         <div className="input-container full">
-                            <input type="password" id="password" name="password" {...password} placeholder="비밀번호를 입력해주세요"/>
-                            {!password.value && <div className="error-msg">비밀번호를 입력해주세요.</div>}
+                            <input type="password" id="password" name="password" {...password} placeholder="비밀번호를 입력해주세요" onblur={handleBlur}/>
+                            {touched.password && password.value==='' && <div className="error-msg">비밀번호를 입력해주세요.</div>}
                         </div>
                         <button type="submit" id="submit">로그인</button>
                     </form>
