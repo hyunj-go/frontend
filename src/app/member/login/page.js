@@ -29,10 +29,10 @@ const Login = () => {
 
     const handleBlur = (e) => {
         const { id } = e.target;
-        setTouched(
+        setTouched({
             ...touched,
-            [id] : false
-        )
+            [id] : true
+        })
     }
 
     return(
@@ -47,11 +47,11 @@ const Login = () => {
                     </div>
                     <form onSubmit={handleSubmit} id="form_area" name="Login Form">
                         <div className="input-container full">
-                            <input type="text" id="email" name="email" {...email} placeholder="이메일을 입력해주세요" onblur={handleBlur}/>
+                            <input type="text" id="email" name="email" {...email} placeholder="이메일을 입력해주세요" onBlur={handleBlur}/>
                             {touched.email && email.value==='' && <div className="error-msg">이메일을 입력해주세요.</div>}
                         </div>
                         <div className="input-container full">
-                            <input type="password" id="password" name="password" {...password} placeholder="비밀번호를 입력해주세요" onblur={handleBlur}/>
+                            <input type="password" id="password" name="password" {...password} placeholder="비밀번호를 입력해주세요" onBlur={handleBlur}/>
                             {touched.password && password.value==='' && <div className="error-msg">비밀번호를 입력해주세요.</div>}
                         </div>
                         <button type="submit" id="submit">로그인</button>

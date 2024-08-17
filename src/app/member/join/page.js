@@ -1,26 +1,51 @@
 'use client'
 import useInput from "@/app/hooks/useInput"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 const Join = () => {  
     const username = useInput('')
-    const password = useInput('')
     const email = useInput('')
     const router = useRouter()
 
-    const [passwordCheck, setPasswordCheck] = useState('')
+    const [touched, setTouched] = useState({
+        username: false,
+        password: false,
+        password_chk: false,
+        email: false
+    })
+
+    const handleBlur = (e) => {
+        const { id } = e.target;
+        setTouched({
+            ...touched,
+            [id] : true
+        })
+    }
+
+    const [passwordSet, setPasswordSet] = useState({
+        password: '',
+        password_chk: ''
+    })
     const [passwordError, setPasswordError] = useState(false)
 
     const handlePassword = (e) => {
-        const {value} = {...e.target}
-        setPasswordError(password.value !== value) //같으면 false 다르면 true
-        setPasswordCheck(value)
+        const { id } = e.target;
+        setPasswordSet({
+            ...passwordSet,
+            [id] : e.target.value
+        })
     }
+
+    useEffect(() => {
+        if(passwordSet.password !== '' && passwordSet.password_chk !== ''){
+            setPasswordError(passwordSet.password !== passwordSet.password_chk) //같으면 false 다르면 true
+        }
+    }, [passwordSet])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(password.value !== passwordCheck){
+        if(passwordSet.password !== passwordSet.password_chk){
             setPasswordError(true)
             return 0;    
         }else {
@@ -32,7 +57,7 @@ const Join = () => {
             return 0;
         }
 
-        if(!passwordError && !termError && userid.value && password.value && email.value && username.value) {
+        if(!passwordError && !termError && passwordSet.password && passwordSet.password_chk && email.value && username.value) {
             userPosts();
         }else{
             alert('필수 입력사항을 입력해주세요.');
@@ -57,7 +82,7 @@ const Join = () => {
         const userData = {
             username: username.value,
             email: email.value,
-            password: password.value,
+            password: passwordSet.password,
         };
         fetch(`${process.env.API_URL}/api/auth/local/register`, {
             method: 'POST',
@@ -92,20 +117,21 @@ const Join = () => {
                             {userid.value==='' && <div className="error-msg">아이디를 입력해주세요.</div>}
                         </div> */}
                         <div className="input-container full">
-                            <input type="text" {...username} placeholder="이름을 입력해주세요"/>
-                            {username.value==='' && <div className="error-msg">이름을 입력해주세요.</div>}
+                            <input type="text" id="username" {...username} placeholder="이름을 입력해주세요" onBlur={handleBlur}/>
+                            {touched.username && username.value==='' && <div className="error-msg">이름을 입력해주세요.</div>}
                         </div>
                         <div className="input-container full">
-                            <input type="password" {...password} placeholder="비밀번호를 입력해주세요"/>
-                            {!password.value && <div className="error-msg">비밀번호를 입력해주세요.</div>}
+                            <input type="password" id="password" value={passwordSet.password} placeholder="비밀번호를 입력해주세요" onBlur={handleBlur} onChange={handlePassword}/>
+                            {touched.password && passwordSet.password==='' && <div className="error-msg">비밀번호를 입력해주세요.</div>}
                         </div>
                         <div className="input-container full">
-                            <input type="password" value={passwordCheck} onChange={handlePassword} placeholder="비밀번호를 다시 입력해주세요"/>
-                            {passwordError && <div className="error-msg">비밀번호가 일치하지 않습니다.</div>}
+                            <input type="password" id="password_chk" value={passwordSet.password_chk} placeholder="비밀번호를 다시 입력해주세요" onBlur={handleBlur} onChange={handlePassword}/>
+                            {touched.password_chk && passwordSet.password_chk==='' && <div className="error-msg">비밀번호를 입력해주세요.</div>}
+                            {passwordError && passwordSet.password!=='' && passwordSet.password_chk!=='' && <div className="error-msg">비밀번호가 일치하지 않습니다.</div>}
                         </div>
                         <div className="input-container full">
-                            <input type="text" {...email} placeholder="이메일을 입력해주세요"/>
-                            {!email.value && <div className="error-msg">이메일을 입력해주세요.</div>}
+                            <input type="text" id="email" {...email} placeholder="이메일을 입력해주세요" onBlur={handleBlur}/>
+                            {touched.email && email.value==='' && <div className="error-msg">이메일을 입력해주세요.</div>}
                         </div>
                         <div className="input-container full checkbox">
                             <input id="term" type="checkbox" checked={term} onChange={handleTerm} />
